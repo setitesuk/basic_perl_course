@@ -1,0 +1,21 @@
+basic perl course notes, slides and course code material.
+
+Note: The #! lines will need changing to your local perl installation
+
+e.g.
+
+>which perl
+/usr/bin/perl
+
+
+edit 02-running_a_program/bin/shebang.pl
+
+change
+
+#!/software/perl -w
+
+to 
+
+#!/usr/bin/perl -w
+
+or whatever path which perl returned
