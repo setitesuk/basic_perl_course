@@ -1,0 +1,7 @@
+Summary
+
+This short section was really just to give you an idea of what you want to think about when developing a new perl program. There are plenty of further options, and other things you can do. It is becoming very common to put everything in an object, and the script only calls a single method on an object, or sometimes the script pulls in from modules, and no objects are ever thought about.
+
+Perls motto of 'There is more than one way to do it' is as applicable here, as when actually writing your code. If you think about what you want to achieve first, you can solve almost all of your problems really sensibly.
+
+What will help you focus more on that though are tests, and that is what we shall now look at.

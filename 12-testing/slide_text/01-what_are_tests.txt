@@ -1,0 +1,18 @@
+What are tests?
+
+What is 2*2?
+What is the name of Queen Elizabeth II?
+Does the sequence 'ACGAAGTCGAACTAGCTACGAGT' contain the codon for Methionine?
+
+These are tests. And that is what we are going to look at now. How do you test
+that your code does what you expect it to?
+
+Why do we want to test?
+
+We have written some scripts, modules and objects and before we release them to the masses, we want to check that they are going to work. At least we can be somewhat confident then that if the users email us saying it doesn't work, we have an idea of why (or at least why not)
+
+How do we test?
+
+We could sit there and run the scripts over and over again, but that is going to get tedious, and also, will be unreliable. As programmers, we must be able to automate the process.
+
+We can. Perl comes with a module 'Test::More', and a special program 'prove' which combined can test our code for us, and then come back and tell us if it works. What's more, we can run this over and over and over.

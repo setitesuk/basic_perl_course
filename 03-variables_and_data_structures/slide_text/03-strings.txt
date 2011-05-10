@@ -1,0 +1,185 @@
+Slide 13
+
+Strings
+
+A string is any quoted value featuring letters, whitespace and punctuation.
+Numbers may also be the only thing, but perl will attempt only to treat it
+as a string when required.
+
+If we look at bin/02-string.pl:
+
+### word string
+
+say 'Hello World';
+
+Strings need to be quoted
+
+say "Hello World";
+
+Either single or double quotes.
+
+Slide 14
+
+### Length
+
+say length 'Hello World'; # get the length of a string
+
+the length function will give us the length of the string. You should note here that Perl is trying
+to work from right to left. So it gets a string 'Hello World', then passes this to the function 'length'
+and the the output of this is passed to 'say'.
+
+Slide 15
+
+### Manipulating the string
+
+say lc 'TACtgATTACACATTACT'; # lower case the string
+say uc 'tactgattacACATTact'; # upper case the string
+say lcfirst 'TACTGATTACACATTACT'; # lower case the first letter
+say ucfirst 'tactgattacacattact'; # upper case the first letter
+
+These features are very useful if you are expecting inputs (we'll look at those later) which could
+be randomly put in by the user, but you want in a perfect manner;
+
+Slide 16
+
+i.e.
+
+User inputs name ANdrEw
+
+say ucfirst lc 'ANdrEw';  # result Andrew
+
+Slide 17
+
+### Concatenate
+
+say 'Hello' . 'World'; # concatenate
+
+We saw concatenating two numbers previously. Now we are using strings.
+
+Slide 18
+
+### Introducing different whitespace characters
+
+say "Hello\tWorld,\nHow are you today?"; # contains a newline and and tab character
+
+If we want other whitespace characters, such as tab or newline, then we can use the
+standard character representation, but we need to use double quotes rather than single.
+This tells Perl that there are things to interpolate as it evaluates the string. (We'll see
+more of this later)
+
+Slide 19
+
+### Boolean strings
+
+say ''; # empty string, this is boolean false
+
+say 'true string' if 'true'; # any string is true apart from the empty string
+
+say 'true empty string' if ''; # this won't be shown, as empty string is false
+
+Slide 20
+
+### producing sequences
+
+say 'a'..'z'; # generate the alphabet quickly
+
+Exactly the same as with numbers, you can use the double dot to generate a list. However,
+be careful if you meant to concatenate 'Hello'.'World'
+
+say 'Hello'..'World;
+
+It might be a useful way to find all the words needed to change 'flax' to 'gold', but you
+probably won't be wanting that very often.
+
+Slide 21
+
+### Maths
+
+say 'a' * 2; # not numeric warning, ends up 0
+
+say 'a' + 'b'; # not numeric warning, ends up 0
+
+You will get warnings produced (as long as you have warnings -w turned on) that 'a'/'b' are not numeric, before
+they are coerced into numbers, which will be 0
+
+say 'a' x 2; # x represents an repeat x times
+
+If you want to repeat your string a number of times, then x outside of quotes will do this. Common mistake
+is to think that * (multiply) will do it. However, that is a number function, and so will coerce to a number
+rather than 'try to do what is probably the right thing'
+
+Slide 22
+
+### string testing
+
+say 'a equals a' if ( 'a' eq 'a' );
+
+say 'a equals b' if ( 'a' eq 'b' );
+
+say 'a does not equal b' if ( 'a' ne 'b' );
+
+say 'a less than b' if ( 'a' lt 'b' );
+
+say 'b greater than a' if ( 'b' gt 'a' );
+
+Unlike many other languages, whilst variables are dynamically typed, the functions which act on them are set to
+string or numbers. As such, when testing strings, we can't use ==/!=/>/<, as these only work for numbers. We have
+string equivalents.
+
+Slide 23
+
+### comparisons
+
+The same is true with comparisons
+
+say 'a' cmp 'b'; # string comparison
+say 'a' cmp 'a';
+say 'b' cmp 'a';
+
+say 'a' <=> 'b';  # not numeric warning, ends up 0
+
+Slide 24
+
+          Number  String
+Equal       ==      eq
+Not Equal   !=      ne
+Less Than   <       lt
+Gr Than     >       gt
+Compare    <=>      cmp
+
+Slide 25
+
+### getting parts of a string
+
+say substr 'TACTGATTACACATTACT', 0, 4;
+say substr 'TACTGATTACACATTACT', 5, 12;
+say substr 'TACTGATTACACATTACT', 5, 15; # doesn't care that there are not enough characters
+say substr 'TACTGATTACACATTACT', -5, 3; # -ve values count back from the end
+
+If you wanted to just find what bit of sequence is at a certain point, then you can use substr, and provide it
+with an index (so many in from the start - note the first character is 0, not 1), and a length
+
+Slide 26
+
+### locating something within a string
+
+say index 'TACTGATTACACATTACT', 'GATTACA';
+say index 'TACTGATTACACATTACT', 'TACT', 7; # allows you to skip over a section, but still returns the index as though counted from the start
+
+You can locate the position that you find something at, optionally skipping so many. Example, if we wanted to find the
+positions of all the codon 'TGA' we can generate loops (we'll look at these later) which finds the word, returns
+the index and then jumps forward to the end of it, and then looks for the next one
+
+Slide 27
+
+### A warning when trying to do maths
+
+#say 20/'b'; # not numeric warning, divide by zero error
+
+Because strings will equate as 0, be careful you don't end up with one as the denominator in a division!
+
+Slide 28
+
+### Other things to do with strings
+
+There are many other things to do with strings for which Perl is the perfect tool, most notably regular expressions, however, we will come to those in their own section, so lets take a look at variables, since none of the strings and numbers we have dealt with here have stayed around outside of the statement they are in.

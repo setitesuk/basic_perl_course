@@ -1,0 +1,12 @@
+How the course perl is to be set up
+
+perl 5.12.3
+
+cpanp
+
+i Task::Moose ( yes to all additional modules to install )
+i File::Slurp
+i http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/List-AllUtils-0.02.tar.gz
+i Modern::Perl
+
+

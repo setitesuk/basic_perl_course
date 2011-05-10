@@ -1,0 +1,17 @@
+Benefits.
+
+Having tests gives you a confidence that the work you have produced is
+
+reliable - you have tested what happens if different parameters are given
+maintainable - if you want to modify the code (add more features, refactor) then if your tests still pass
+you know that you haven't broken it
+
+So what now with it - it's all a bit add more to the codebase isn't it?
+
+Well, what that leads onto is the idea of Test Driven Development. You know what you want your code to do, so write a test which will see if it can do it, and then write the code to do it. If you do that, then you can follow that your code is heading in the right direction.
+
+This gives you and your users confidence. When you download something from CPAN, almost all of the distributions have a test suite which is downloaded and run before installation. This means that you can have confidence in the work that those people have done, and can reliably use the methods, knowing they shouldn't do something different from what you are expecting.
+
+Test can also help you understand what the code is trying to do, so that you can look here if the code itself looks horrible to read.
+
+Now we'll move onto a topic which won't be helped by Tests, but has kept the popularity of perl alive with systems administrators.

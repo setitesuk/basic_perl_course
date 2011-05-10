@@ -1,0 +1,47 @@
+Slide 3
+
+All perl scripts need to start with the #! line.
+
+This tells the computer what language to use, and where the language binaries
+can be found
+
+#! /Users/ajb/dev/bin/perl (-wT)
+
+What does each part mean?
+
+Slide 4
+
+#!
+
+In most languages, a # represents the start of a comment, so it is generally ignored.
+The exception is if it is the first line of a script, when the computers own internals
+are looking at it still, to find out how the run the program. If it sees the ! sign
+directly after, then it will parse this line, expecting to then hand off the script
+to a language interpreter, which will continue with the implementation.
+
+Slide 5
+
+/Users/ajb/dev/bin/perl
+
+This is the interpreter executable that that the script is to be handed off to.
+The computer will run this, giving it the script file as an argument, and then let
+the interpreter handle the rest.
+(You should check which is your executable perl interpreter 'which perl' and then
+'perl -v' to check that you have the correct path in your shebang line)
+
+Slide 6
+
+(-wT)
+
+You can place optional arguments to the executable on this line, and these will be handled
+as though they were arguments on a command line. There are others, but w and T are the most
+commonly seen in perl scripts. (We will mostly be using w)
+
+Slide 7
+
+So, when we run bin/shebang.pl, the computer will then execute
+
+/Users/ajb/dev/bin/perl -w bin/shebang.pl
+
+You can try this yourself.
+

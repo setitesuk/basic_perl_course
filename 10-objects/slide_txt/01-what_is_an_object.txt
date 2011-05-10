@@ -1,0 +1,45 @@
+### Objects
+
+Perl was originally conceived as a procedural language. You wrote a script of things to do, the intepreter parsed this, and executed it from top to bottom. Much like following the recipe for making a cup of tea.
+
+Procedure
+
+Put teabag in cup
+boil water
+add boiling water to cup
+brew to taste
+remove teabag
+add milk/sugar/lemon to taste
+drink
+
+Procedural processing is fast, because computers (like us) like to process in a top to bottom way (You don't start a recipe halfway down - or at least not more than once :) )
+
+Many other languages are considered Object Oriented, they like everything to be an object, and you call methods (functions) on that object. Much like a kettle is an object, it can't make the tea, but it can boil water.
+
+Object
+
+cup - contains water, teabag, milk, sugar, lemon (attributes)
+    - has methods add_water, add_teabag, add_milk, add_sugar, add_lemon, remove_teabag, drink, stir_with_spoon
+
+kettle - contains water
+       - has methods boil_contents, fill_kettle, pour_contents, water_is_cold, water_is_hot
+
+saucepan - contains water, soup
+         - has methods boil_contents, fill_saucepan_with, simmer_soup, pour_contents
+
+teabag - has methods fresh, is_used
+
+With the advent of Perl5, the designers decided to implement an Object system into Perl. So that a Perl project could become object oriented if the developer of that project wished it. What actually happened was that Perl virtually became Object Oriented, and left procedural scripts to be only when objects were really to much.
+
+Because Object Orientation is an add on, it is slower than procedural, but has some nice advantages, such as allowing us to abstract away sourcing the data and methods which manipulate it, from code that displays it to the user (or saves it to a file).
+
+So in the case of our objects above, we could boil(method) water(data) in either a kettle(object) or a saucepan(object). Our teamaker only cares that it can obtain boiling water. With a small change to the methods we call on the object given to the teamaker, our teamaker will still get boiling water for our Tea.
+
+Frameworks developed to take advantage of this, and a framework has appeared which does 90% of the hard work for you in creating objects. Moose.
+
+What we are going to do is create objects, and see how to use them in our scripts, using Moose. It is by far the easiest way to create objects, leaving out all the need to remember how to set up the objects and how to (correctly) store data in them.
+
+A note here, if you start following the Perl community, you will see a lot of arguments against Moose, and how you should be using something else. Don't listen for now. Stick with this one, and you will not go wrong (or at least not far).
+
+I am also only going to look at simple objects. We could go into a vast area of great things you can do with the code base, especially with Moose. However, Keep It Simple Stupid (KISS), and things will go right.
+

@@ -1,0 +1,102 @@
+### Our first function
+
+The syntax for writing a function is
+
+sub function_name {
+  my @params = @_;
+
+  ...do something
+
+  return <values>;
+}
+
+Lets look at this:
+
+sub function_name {
+
+This is actually passing two parameters (a function name and a block of code) to the function sub. This generates a new function with your name, which when called, will run the code in the block.
+
+  my @params = @_;
+
+The list of parameters you give to a function are passed in as an array called @_
+
+It is very bad to use this to process directly, so we assign this to a new array (make a copy of it), which is scoped to the function code block.
+
+# when something is scoped, it is only alive and usable within the block of code that it has been created within
+
+  ...do something
+
+Run some perl code within the block
+
+  return <values>;
+
+We want to return to the caller, and pass back any values we have created (as the scope will stop them being visible outside of the function). We can pass back either undef (nothing), a scalar or an array.
+
+}
+
+Close the block of code (or we'll fail to compile at best!)
+
+Lets write a function which takes a sequence of DNA, and looks to see if it contains the codon sequence for Methionine (ATG).
+
+sub find_methionine {
+  my ( $sequence ) = @_;
+
+  my $return;
+# set up a return variable, set to an false value, so that if we don't match, we will return false, if we match we make it true
+
+  if ( $sequence =~ m/ATG/ixms ) {
+    $return = 1;
+  }
+# our bit of code that we want to run, in this case a pattern match against the methionine codon
+
+  return $return;
+# now we have set (if true) $return, return it
+}
+
+my $sequence = 'ACTGATCGATAGCTAGCTAGCTAGGCT';
+
+if ( find_methionine( $sequence ) ) {
+  say "$sequence contains Methionine";
+} else {
+  say "$sequence does not contain Methionine"
+}
+
+$sequence .= 'ATG';
+
+if ( find_methionine( $sequence ) ) {
+  say "$sequence contains Methionine";
+} else {
+  say "$sequence does not contain Methionine"
+}
+
+my @seqs = qw{
+  ACTGATCGATAGCTAGCTAGCTAGGCT
+  ACGTAGCTGACAGCTGACGGCTAAAAG
+  GCTGATCGATGCTAGGCTTTAGGGGAA
+  AGCTGATAGTATTAAAAAATATATAAA
+  AAGCTTGCATGCCCGGGATCGGTCGCT
+  CCCGTTCGTCGCTGCTCGTCGTCGTCG
+};
+
+foreach my $sequence ( @seqs ) {
+  if ( find_methionine( $sequence ) ) {
+    say "$sequence contains Methionine";
+  } else {
+    say "$sequence does not contain Methionine"
+  }
+}
+
+
+So why was that a benefit? I could do a pattern match against each one.
+
+Yes, but can you already see that instead of writing
+
+  if ( $sequence =~ m/ATG/ixms ) {
+
+three times, I have only written
+
+  if ( find_methionine( $sequence ) ) {
+
+three times - which means less chance of putting the wrong codon in.
+Imagine if there were more code needed here as well.
+

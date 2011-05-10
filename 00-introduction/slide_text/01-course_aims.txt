@@ -1,0 +1,42 @@
+
+Slides 2 & 3
+
+This course is an introduction to perl. The aims are that at the end of the next four days you should:
+
+1) Be able to run a perl program
+
+2) Understand about variables and data structures
+
+3) Be able to write a program in perl that can take advantage of it's capabilities in
+  i) string manipulation
+  ii) number functions
+  iii) loops
+  iv) decision making
+  v) regular expressions
+
+4) be able to read and write files
+
+5) Understand about Functions
+
+6) Understand about Modules
+
+7) Understand about Objects
+
+8) Understand about Testing
+
+9) Be able to write a perl one-liner
+
+That is quite a lot. We shall be aiming to work in this order, and hopefully will get to the end before the time runs out. Although we will need to work quite fast, I don't want anyone to get left behind. I would rather miss out the last 2 aims (Testing and one-liners) than rush you through aims 1->4.
+
+Slide 4
+
+Please ask when you don't understand, and we'll go over it. There are 20 people here, and you won't be the only on who hasn't grasped the concept.
+
+Slide 5
+
+Also, this is the first time I have run the course, and this has been written from scratch. We thought it would be good for you to learn concepts that are currently used (Modern Perl), rather than spending 3 days just looking at the basics. However, slow me down, and I'll make notes when I've not covered enough of what you need. Hopefully I have written a course with a good pace and a good mix of basic and modern perl. Let's see.
+
+Slide 6
+
+You will be able to take away a copy of the course text - Modern Perl, plus all the materials developed for this course so that you can go over it again. Where possible, I have commented code to explain it, so that when you come to look at it again, the explanation is there. So hopefully you won't need to trawl through the slides again and match them to the code.
+

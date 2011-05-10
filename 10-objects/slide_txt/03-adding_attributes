@@ -1,0 +1,83 @@
+Adding Attributes
+
+When we discussed the cup as an object, we said it had attributes such as
+
+water
+teabag
+milk
+sugar
+lemon
+
+which we could look at in terms of presence of them. Does the cup have water in it? Yes/No
+
+Or we could simply have the attribute 'contents', which could have a list of the above items.
+
+Attributes are just that, they are the contents of the object. We tend to make things easier
+on ourselves by making the attributes relevant to the object
+
+1) the object is going to do something with them (change water to tea)
+
+2) logically provides a store for them (library stores books, but doesn't store kettles)
+
+Our SequenceManipulator object will need some attributes. Suggestions?
+
+sequence
+
+It is logical for a SequenceManipulator object to have a sequence attribute, so that it has something to manipulate
+
+has 'sequence' => (
+  is => 'rw',
+);
+
+has is a special method which Moose gives us, to create an attribute with the name provided, in this case 'sequence'.
+We also must create a hash off this with some things to define the attribute. You must always provide an 'is' definition.
+This can have one of two values rw (read/write) or ro (read only). We'll use rw.
+
+On top of ro/rw, we can determine if they should be a Number, String, ArrayRef, HashRef, Object or Boolean. We know that a sequence must be a string, so we will code for that.
+
+has 'sequence' => (
+  isa => 'Str',
+  is  => 'rw',
+);
+
+There are more definitions we can give the attribute, but lets keep it simple (if you want to investigate more, look up Moose on CPAN).
+
+So now we have an attribute, lets put something in it, and get it back.
+
+my $sequence_manipulator = SequenceManipulatorAttributes->new( {
+  sequence => 'ACTAGTCGATCTGATCGTAGCGTNGCTAGTCGTAT',
+} );
+
+We can add a sequence to the attribute when we create the object by passing in a hashref containing keys that match the attribute names, and values for those keys.
+
+say $sequence_manipulator;
+say $sequence_manipulator->sequence();
+
+To call back the sequence, all we need to do is call the attribute name off the object via the arrow operator.
+
+We can also add a sequence to the object after it has been created (but only if using rw)
+
+my $sequence_manipulator_2 = SequenceManipulatorAttributes->new();
+
+say $sequence_manipulator_2;
+$sequence_manipulator_2->sequence( 'agctagctgatctgatgtcnnagctgatgct' );
+say $sequence_manipulator_2->sequence();
+
+All we have to do is pass in the sequence to the attribute name, again called via the arrow operator
+
+We can have more than 1 attribute (which you will do in the next workshop).
+
+You might say, well, I could just get a hash, store a sequence on that as a key, and call
+
+my %sequencehash = (
+  sequence => 'AGCTGATCGTAGGGTCGATG',
+);
+
+say $sequencehash{sequence}
+
+and
+
+$sequencehash{sequence} = 'gatgatcgtagatcgtagt';
+
+That is true, but what we get with objects are methods with the data.
+

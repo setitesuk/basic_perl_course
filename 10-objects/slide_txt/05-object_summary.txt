@@ -1,0 +1,59 @@
+Object Summary
+
+1) An object is written almost identically to a module, with a package name and the true 1;
+But use Moose, instead of Export stuff
+
+package MyObject;
+
+use Modern::Perl;
+use Moose;
+
+1;
+
+2) You still use the package in your script
+
+use MyObject;
+
+3) An object has attributes - data stores which can be read/write or read only, and can be typed
+
+has 'string'   => ( isa => 'Str',       is => 'rw' );
+has 'number'   => ( isa => 'Num',       is => 'rw' );
+has 'arrayref' => ( isa => 'ArrayRef',  is => 'ro' );
+has 'hashref'  => ( isa => 'HashRef',   is => 'ro' );
+has 'boolean'  => ( isa => 'Bool',      is => 'ro' );
+has 'object'   => ( isa => 'Obj',       is => 'rw' );
+has 'any'      => ( is => 'rw' );
+
+If it needs modifying either outside of the object or within after construction, it need to be rw
+(or special setup - see cpan Moose)
+
+4) An object has methods - written almost identically as functions, except needing to get $self
+
+sub my_object_method {
+  my ( $self, $param1, $param2 ... ) = @_;
+}
+
+If you want to access an attribute to work on, then
+
+  my $method_copy = $self->attribute();
+
+Once worked on, if it has to be overwritten or populated (and is rw)
+
+  $self->attribute( $worked_on_copy );
+
+5) Obtain an object in your script with
+
+  my $object = MyObject->new( {
+    attribute1 => 'value1,
+    ...
+  } );
+
+
+6) Call attributes and methods on your object
+
+  my $object_attribute = $object->attribute1();
+
+  $object->my_object_method( @parameters );
+  
+   
+

@@ -1,0 +1,43 @@
+### Extend the function
+
+However, we are likely to want to see if the sequence contains more than just methionine. There are 20 amino acid bases, plus stop to think about. 64 codon combinations. That is between 21 and 64 lots of almost the same code repeated.
+
+Could we improve so we only need one function?
+
+Yes. We can pass in any number of parameters, not just the sequence. So, why not pass in the codon or amino acid we want to find as well.
+
+sub find_amino_acid_by_codon {
+  my ( $sequence, $codon ) = @_;
+# we'll accept the 2nd parameter sent to us, and call it what it represents, $codon
+
+  my $return;
+
+  if ( $sequence =~ m/$codon/ixms ) {
+# this time we'll match against the $codon variable, rather than a fixed string
+    $return = 1;
+  }
+
+  return $return;
+}
+
+my @seqs = qw{
+  ACTGATCGATAGCTAGCTAGCTAGGCT
+  ACGTAGCTGACAGCTGACGGCTAAAAG
+  GCTGATCGATGCTAGGCTTTAGGGGAA
+  AGCTGATAGTATTAAAAAATATATAAA
+  AAGCTTGCATGCCCGGGATCGGTCGCT
+  CCCGTTCGTCGCTGCTCGTCGTCGTCG
+};
+
+foreach my $sequence ( @seqs ) {
+  if ( find_amino_acid_by_codon( $sequence, 'AAA' ) ) {
+    say "$sequence contains Lysine";
+  } else {
+    say "$sequence does not contain Lysine"
+  }
+}
+
+So, now we have a function which means we never have to write the pattern match again.
+
+However, we need a source of codons to look at, and we don't want to have to remember there are 2 for Lysine, 3 for STOP...
+

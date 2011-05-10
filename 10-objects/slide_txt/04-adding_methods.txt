@@ -1,0 +1,153 @@
+Adding Methods
+
+Object have methods. Our kettle object had methods
+
+boil_contents
+fill_kettle
+pour_contents
+water_is_cold
+water_is_hot
+
+What we can see is that the methods this object has are related to the attributes it would have
+
+contains_water
+
+This is what we achieve with objects. Data, with methods that act on that data.
+
+So for our SequenceManipulator, what methods might we have?
+
+length
+at_content
+gc_content
+at_percentage
+gc_percentage
+find_amino_acid
+reverse_strand
+amino_acid_sequences_per_orf
+change_base
+
+We have seen some of these before? Why might it be better to keep them in the object, with the sequence, rather than outside (just exported from another module - after all, being in a module makes it reusable)
+
+The point is, if you keep your data and the methods which manipulate it close, the code becomes clearer.
+
+The method length could mean anything, part of the dimensions of a piece of office furniture, requested length for a table to be, time portion,...
+
+By having the method inside the object, then it limits the scope that length can mean. It has to relate to sequence, and therefore is likely to be either request for a specific length, or more likely, the length of the sequence in the manipulator.
+
+You also reduce the likelihood of clashes of code, since you have to call the method off the object so that
+
+$table->length();
+$sequence_manipulator->length();
+
+will know which operations to do on which data, rather than
+
+length( $table );
+length( $sequence );
+
+The same method is called, and it has to know what to do with either, and will probably end up breaking your code.
+
+So, let's add a method to our SequenceManipulator.
+
+sub length {}
+
+That was easy, wasn't it. All we have done is written a function in our module.
+
+However, as things stand, it won't allow us to manipulate the sequence, as it hasn't got a clue about the object.
+
+sub length {
+  my ( $self ) = @_;
+}
+
+It is the usual (read 'only') way to get operate on the object to take the array which is passed to the object, and the first attribute in that array is always the object itself. Always call the object '$self' as well. Whilst it could be called '$anything', most languages have an idea of self within an object, and it is considered the norm to do this.
+
+So, we want to return the length of the sequence, so let's finish our length method
+
+sub length {
+  my ( $self ) = @_;
+  return length $self->sequence();
+}
+
+So now by calling (03-adding_methods.pl)
+
+say $sequence_manipulator->length();
+
+We get a print out of the length of our DNA sequence in the object.
+
+Let's add another - lets add the ability to change a base in the sequence to another one, permanently.
+
+sub change_base {
+  my ( $self, $original_base, $new_base ) = @_;
+
+  if ( $original_base !~ m/[ACGTN]/ixms || $new_base !~ m/[ACGTN]/ixms ) {
+    die 'one of your bases is not a legitimate base';
+  }
+
+  my $sequence = $self->sequence();
+
+  $sequence =~ s/$original_base/$new_base/gixms;
+
+  $self->sequence( $sequence );
+
+  return $sequence;
+}
+
+In the script ( 03-adding_methods2.pl )
+
+$sequence_manipulator->change_base( 'a', 't' );
+say $sequence_manipulator->sequence();
+
+This is a bit more complicated, let's go through it
+
+sub change_base {
+  my ( $self, $original_base, $new_base ) = @_;
+
+We want to accept two parameters. $original_base and $new_base. However, the first parameter to an object method is always itself, so we need to account for this, and accept 3 parameters, naming accordingly.
+
+  if ( $original_base !~ m/[ACGTN]/ixms || $new_base !~ m/[ACGTN]/ixms ) {
+    die 'one of your bases is not a legitimate base';
+  }
+
+We'll do a check here to ensure that the 2 parameters match a legitimate DNA letter (we'll include N). If not, we'll die, which will take us backto the calling script and die out of that with the message declared.
+
+  my $sequence = $self->sequence();
+
+We'll get the sequence that is inside the object. We have to do that as a call on $self, since there is no magic which will let us use the attribute without such a call.
+
+  $sequence =~ s/$original_base/$new_base/gixms;
+
+We do a regular expression substitution on the sequence obtained.
+
+  $self->sequence( $sequence );
+
+We store this back in the attribute (even though it is done inside the object, we still need the attribute to be rw, otherwise the function wouldn't work)
+
+  return $sequence;
+}
+
+We return the changed sequence, as this provides a true value, and could save people an extra method/attribute call. We close the method. (i.e. say $sequence_manipulator->change_base( 'a', 't' )  would output the changed sequence without calling the attribute afterward)
+
+$sequence_manipulator->change_base( 'a', 't' );
+
+We call the method on object $sequence_manipulator, passing in 2 parameters, the base we want to change, and the base we want it changed to.
+
+
+
+We can add any amount of methods we like, and any number of attributes. However, it is recommended that you look to keep objects discrete. It's no use creating an object that can do loads of stuff, if the call for it to do it is highly unlikely.
+
+i.e.
+
+sub find_film_name {
+  my ( $self, $film_name ) = @_;
+
+  if ( $self->sequence() =~ m/$film_name/ixms ) {
+    say "film $film_name is found in " . $self->sequence();
+  } else {
+    say "film $film_name is not found in " . $self->sequence();
+  }
+
+  return;
+}
+
+As useful as it might be to find the title of a film starring Uma Thurman in the sequence, it isn't something that is
+highly useful, so probably best to leave it out. If IMDB want to use your module to do that, then they still could use the module as a store of sequence, and then write a function in the script to compare the film name.
+

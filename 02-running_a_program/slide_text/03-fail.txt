@@ -1,0 +1,16 @@
+Slide 12
+
+Sometimes scripts fail.
+
+Perl is generally quite helpful when you have made a mistake in your script. It will try
+to tell you where your problem occured, and what might have caused it.
+
+If we try running the fail_world script:
+
+>bin/fail_world.pl
+Illegal division by zero at bin/fail_world.pl line 4.
+
+This has been very helpful, we know at what line there is an error, and what the error is.
+
+Sometimes a little bit of investigation is necessary, but generally, read the error, look at
+the line, and see what it says.

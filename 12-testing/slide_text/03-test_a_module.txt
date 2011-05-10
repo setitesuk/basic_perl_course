@@ -1,0 +1,36 @@
+## Module test
+
+Modules are prime to test, because the test is a script, and they expect to be called by a script.
+
+You test each function in turn, passing in parameters, and testing the expected outcomes.
+
+Lets test the DnaHelpers module we wrote before.
+
+use Test::More tests => 3; # This time there will be 3 tests
+
+use_ok ( 'DnaHelpers' ); # test that we can use the module ok - this checks it will compile and gets the code for us
+
+my $sequence = 'ACATCAGATCGTAGCTGCTCGCTGCGATATGC';
+my %amino_acids = (
+  Methionine => {
+    '3_letter_code' => 'Met',
+    codons => [ qw{ATG} ]
+  },
+);
+
+# set up some data to use for testing. We will take a sample of our Amino Acid data structure, and a sequence which we know contains ATG
+
+is( find_amino_acid( $sequence, $amino_acids{Methionine} ), 'Met',  'Methionine found' );
+
+# test to see if the method, with our known data actually returns the 3 letter code because it finds ATG
+
+$sequence = 'ACATCAGATCGTAGCTGCTCGCTGCGATACGC';
+is( find_amino_acid( $sequence, $amino_acids{Methionine} ), undef,  'Methionine not found' );
+
+As it is possible not to find the sequence, we change  to ensure that there is no ATG, and rerun, to test that it returns undef when not found.
+
+prove -vl t/module.t
+
+adding the l ensures it looks in the lib directory to find the modules.
+
+

@@ -1,0 +1,95 @@
+Slide 30
+
+Scalars
+
+The simplest variable in Perl is the scalar. The simplest way I can describe is a named box,
+inside which there may be one value.
+
+Slides 31/32
+
+A scalar always starts with a $ sign (because it looks like an S) and then has an alphanumeric/underscore
+name. You cannot start with a non_alpha character, and it is good practice for the name to be representative
+of what you expect to be there.
+
+Slide 33
+
+### Assignment
+
+
+We assign to a scalar using the = operator (which is why numerical equality is ==).
+
+my $integer_scalar = 10;
+
+my $string_scalar = 'I am a string';
+
+say $integer_scalar;
+say $string_scalar;
+
+Slide 34
+
+Because of dynamic typing, Perl doesn't care if you have assigned a number or a string. I could just
+have easily assigned 10 to $string_scalar, but I want to have some clue as to what it likely to be there,
+so I don't.
+
+Slide 35
+
+### What do I do with a scalar?
+
+You can then use the scalar in exactly the same way as if the number or string were there.
+
+say $integer_scalar + $integer_scalar; # numeric addition
+
+say $string_scalar . $integer_scalar; # string concatenation
+
+say $string_scalar * $integer_scalar; # gives warning that string_scalar isn't numeric, converts to 0 and so answer 0
+
+Slide 36
+
+# what do you thing the following would do
+say $string_scalar x $integer_scalar; # x is a 'return this x times feature'
+
+Slide 37
+
+### Mix scalars and fixed values
+
+say 'I can use a fixed string and concatenate to ' . $string_scalar;
+
+say 30 / $integer_scalar;
+
+Slide 38
+
+### Interpolate scalars
+
+say 'Hello, ' . $string_scalar;
+
+We don't have to concatenate these two together
+
+say 'Hello, $string_scalar'; # single quotes won't interpolate the scalar
+
+But this doesn't interpolate!
+
+say 'Hello, ' . $string_scalar;
+say "Hello, $string_scalar"; # double quotes will interpolate the scalar
+
+If we use the double quotes, as we did with the \t and \n characters, then the scalar
+is interpolated, and automatically included as part of the string
+
+Slides 39/40
+
+### undef
+
+undef is a 'magic' value which is automatically assigned to all variables if they have
+been created, but have nothing in them. It is boolean false (along with 0 and empty string).
+
+my $undef_scalar;
+
+say $undef_scalar;
+
+(Note the warning that we have an uninitialized value! Heed warnings when coding)
+
+You can also explicitly assign undef to variable, but in general, only do this if you need
+to clear it out.
+
+$string_scalar = undef;
+
+say $string_scalar if $string_scalar; # we have cleared $string scalar, so we won't print anything

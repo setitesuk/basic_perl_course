@@ -1,0 +1,64 @@
+Perl stands for:
+
+Slides 2&3
+
+Development:
+
+Created in 1987.
+
+Larry Wall first invented Perl in 1987, whilst struggling to do some data parsing with Awk
+to produce reports.
+He spent the night ripping Awk apart, and the following morning, had Perl v1
+
+In the first few years, Perl went through rapid development, until the release of Perl4 in 1991, along with the
+publication of Programming Perl "The Camel Book".
+
+It was maintained for a few years, until Larry started working on Perl5 in 1993, being first released in 1994.
+Perl 5 added many new features, including Objects, References and Modules. This has been the active development
+version since.
+
+In 1995, the most important event took place, in the creation of the Comprehensive Perl Archive Network (CPAN),
+which as of Jan 2011 has over 19,000 modules by over 8,000 authors.
+
+In 2000, Larry requested people to suggest features for a new Perl, Perl6. However, work on that stalled in the early
+noughties, and whilst there are now monthly releases, the support cycles for Perl5 are keeping this version the most
+heavily utilised.
+
+Perl5 has moved now to a yearly release cycle, with 5.12 release in 2010, and 5.14 for 2011. However, beside this,
+5.8.8 probably remains the most used version, and all new versions are attempting to maintain as much backwards
+compatibility as possible with this, since substantial amounts of code rely on the feature set here.
+
+Slide 4
+
+Practical Extraction and Report Language
+
+However this is a backronym, and originally was named "Pearl" after the Parable of the Pearl from the Gospel of Matthew.
+However, shortly before release, Larry discovered the PEARL programming language, and so changed the spelling of the name.
+
+Several other backronyms have been suggested, including Larry's own humorous Pathologically Eclectic Rubbish Lister.
+
+Slide 12
+
+Applications:
+
+Perl applications are heavily used in a number of situations, ranging from sysadmin support and GUI's to
+bioinformatics and high traffic web sites.
+
+Because of the CPAN, we have access to a plethora of code which supports these applications. e.g. CGI for
+websites (along with many frameworks on top of this), BioPerl (which gives you access to a multitude of
+BioInformatics tools).
+
+Slide 13
+
+Licensing:
+
+Perl itself (the language and the interpreter) and all the code on CPAN is open source (a substantial
+amount written by people who do or have worked on this site) which enables free use of the code, pretty
+much without worrying about licenses. Open source encourages you to work and get the job done, without
+the cost overhead. You are encouraged to release useful code as open source, but it isn't a requirement.
+
+
+
+
+
+

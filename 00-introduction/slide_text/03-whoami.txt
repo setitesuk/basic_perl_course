@@ -1,0 +1,22 @@
+Who Am I?
+SLide 14
+So, Who Am I. I'm Andy Brown. I've been dabbling with perl since 2002, and have been programming full time since 2007.
+
+I started at The Sanger Institute back in 1999 as a Finisher, and whilst in the department, self taught and went on courses like this to learn perl. Coming back from those courses, I wrote web applications and command line scripts to help in the department, including helping to rewrite gapNav, and writing the comptags script.
+
+In 2007 I joined the NPG team, working on tracking applications for the New Sequencing Technologies, and my most recent/current project responsibility was redeveloping the primary and secondary analysis pipelines so that we could easily add or take away components.
+
+I have dabbled in Ruby on Rails, and web technologies (HTML, JavaScript, CSS, XML).
+
+One key thing I'd like to tell you though is that I have no 'formal' training in software development. All of it has been in house. My degree is in Chemistry and Business Studies, and I have a PGCE in Secondary Science with Chemistry (so you are being taught by a qualified teacher!)
+
+Slide 15
+
+What I'd like to do now is get you all to introduce yourselves. I'm useless with names, so please do make sure you have filled in your name card and put it on your desk.
+
+When introducing yourself, I'd like you to say
+
+Your name
+What you work on
+What you'd like to get out of this course
+3 words which describe you - either likes, hobbies or something else

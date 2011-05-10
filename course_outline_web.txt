@@ -1,0 +1,52 @@
+This 4 day course is aimed at people with no or very limited perl and software experience.
+(Perhaps you have already done a basic perl course, but haven't used it for a while, and want
+a refresher).
+The aim of the course is to bring the student up to being able to read,write and run a perl
+script, using modules, objects and tests.
+
+We will go from the basics (numbers, strings and data structures) to objects, using DNA sequence
+manipulation as a focus (where appropriate) to bring a degree of 'real world' to the examples.
+
+Rough outline (subject to change):
+
+Day 1:
+ Introductions
+ What is Perl?
+ Running a program
+ Variables and Data structures
+
+Day 2 :
+ Inputs and Outputs - STDIN/STDOUT/STDERR/DATA and @ARGV
+ Regular Expressions
+ Decision Making
+ File Operations
+
+Day 3 :
+ Functions
+ Modules
+ CPAN
+ Objects
+
+Day 4 :
+ Testing
+ One-liners
+ Extra time: Real production scripts
+
+To be Noted:
+
+If you have software development experience in another language, you may find
+this course not to your taste, as we will not be comparing to other languages, or looking
+at how you would do something that you can do in another language. This course is designed
+to allow people to focus on the language in hand.
+
+This course is not going to go into how to download and install/setup/debug your own perl
+environment. As such, if you want to use your own laptop, you may, but it is strongly advised
+against unless you are already experienced in that sort of thing (in which case, this course
+is possibly already below you) and you ensure that you have downloaded and install the
+correct version of perl and relevant modules already. The course tutor will not have time to
+help with problems caused by this.
+
+As it is a course designed for newer users of Perl, we will also not be discussing the
+greater depth behind each subject area beyond enough to get you working. There will be
+pointers along the way as to how you can find this out for yourselves, but we want to get
+you writing programs and code that do something.

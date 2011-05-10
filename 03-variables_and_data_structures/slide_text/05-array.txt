@@ -1,0 +1,212 @@
+Slide 41
+
+Scalars are all well and good, but we often have groups of data. There
+are 2 primary ways of grouping data in perl, arrays and hashes. Lets look
+at arrays.
+
+An array is like a list of items, which is just read through top to bottom,
+or jumped to by index.
+
+Each position of the array is a scalar box, and you can act on what is in it
+exactly as you could any scalar.
+
+bin/04-array.pl
+
+Slides 42,43,44
+### Making an array
+
+Arrays are named in a script in exactly the same way as a scalar, except that
+we replace the $ with the @ symbol. (It is also usual to use a plural word)
+
+They can be generated directly in a number of ways. (We still use the = symbol
+for assignment though)
+
+my @string_array = qw{hello i am an array of strings};
+
+qw{} quotes each word individually, and each is put into the array list in order
+
+my @integer_array = 1..10;
+
+Here we use .. to make a consectutive list of the numbers (they could have been strings)
+which are then put into the array in order
+
+my @comma_made_array = ( 'i', 'see', 'a', 'little', 'silhoutte', 'of', 'a', 'man,' );
+
+This is probably the most common array assignment way, if a little verbose.
+Note the () though. This tells perl upfront to expect to treat everything in it as items
+of an array.
+
+my @x_generated_array = ( 'scaramouche,' ) x 2;
+
+Remember x repeats the item (string,integer) so many times, therefore taking the array
+containing 'scaramouche' and duplicating it, before assigning it to the array variable.
+
+Slide 45
+
+### Array Operations
+
+say 'The string_array, without any join: ' . @string_array;
+
+When outputted directly, all the elements in the array are just concatenated together
+
+say 'The integer_array, with a comma join: ' . join ',', @integer_array;
+
+We can get around this by 'join'ing them together with a string (in this case a comma)
+
+Slide 46
+
+say 'The fourth number in the integer array is ' . $integer_array[3]; # why is the fourth one 3?
+
+To access one element of the array directly, change the symbol to a $ (since we need to tell
+perl that we are going to have a scalar), and then use the [x] notation to give the index.
+The fourth element is 3, since indexing in perl is 0 based (as we saw with strings).
+
+say 'The last word in the string array is ' . $string_array[-1];
+
+You can directly get the last element of the array by counting backwards, the last
+element being -1
+
+Slide 47
+
+my @slice = @string_array[1 .. 4];
+
+say 'An array slice of the string array, indices 1->4: ' . join ' ', @slice;
+
+A subset of the array can be obtained by an array 'slice'. Since this returns another
+array, we don't switch the @ to $. You can assign this directly to another array.
+
+Slide 48
+
+### The number of elements
+
+say 'The number of elements in string_array is : ' . scalar @string_array; # length is string length, scalar is array length
+say 'The length of x_generated_array is : ' . length @x_generated_array; # extra points to those who can say why you get 1
+
+The keyword scalar gives you the number of elements in the array. In some cases you can omit the word,
+but if you are always explicit, then you won't have a potential bugsite!
+
+length only works on a scalar (it is a string function) so in this case, we get one as it forces scalar on @x_generated_array, which returns 2, and then does length on the string '2' which of course has a length of 1
+
+Slide 49
+
+### interpolation
+
+say 'The first word in the string array is $string_array[0]';
+say "The first word in the string array is $string_array[0]"; # again, double quotes interpolate the variable
+
+Just as we did with a scalar, we can insert into "" the scalar of an element in the array, and it will be
+interpolated into the string.
+
+Slide 50
+
+### Doing stuff with arrays of data
+
+say join ' ', @comma_made_array, @x_generated_array, 'will you do the fandango?'; # we can push arrays and/or scalars together and they act as one array
+
+Functions tend to expect arrays of arguments (we'll explain more later) but as such, we can use the comma to 'join' arrays together, so that the function treats as one array.
+
+Slide 51
+
+my @three_lines = ( ( join ' ', @comma_made_array ) , ( join ' ', @x_generated_array ), 'will you do the ballroom blitz?' );
+
+say scalar @three_lines;
+
+say join "\n", @three_lines;
+
+This is a bit over what you are likely to do, but we can make new arrays from data processed.
+
+Slide 53 & 54
+
+### Iterating over arrays
+
+foreach my $int ( @integer_array ) {
+  say $string_array[$int];
+}
+
+foreach my $str ( @string_array ) {
+  say $integer_array[$str]; # as $str is a string, not an integer, then is converted to 0, and so prints out first element each time
+}
+
+To iterate over an array, we can use the function foreach (we'll look more at how this works later) and just act with each. Perl is basically taking each element in turn, assigning it's value to a scalar ($int/$str) and then you use this as the variable within the block of code (we'll look at code blocks later as well).
+
+Slide 55
+
+### empty array
+
+my @assigned_into_array; # you don't need to explicitly do '= ()'
+
+To generate an empty array, just instantiate it. You can optionally put = () i.e. assign to it an empty array
+
+An empty array is a boolean false, because it has 0 elements. Any instantiated elements, even if they themselves
+would be false, make they boolean for the array true.
+
+Slide 56
+
+# adding and removing elements
+
+$assigned_into_array[2] = 10;
+say scalar @assigned_into_array; # indices that are missing are autovivified
+say @assigned_into_array;
+
+We can insert a value into any point in the array by assigning to the scalar at that point.
+If it doesn't exist, it will create the element 'box', or otherwise it will replace what was there.
+
+If you insert an element which is not the next one to be done, all intervening elements will be created,
+with undef (i.e. they will be empty).
+
+Slide 57 - push
+
+say scalar @comma_made_array;
+push @comma_made_array, @x_generated_array; # push onto end of array
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+
+push adds elements to the end of an array. That can be a single element, or another array.
+
+Slide 58 - pop
+
+my $last_element = pop @comma_made_array; # pop off the end of array
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+
+pop removes the last element of the array. Note it completely removes it, including the 'box' that it was in,
+so that the number of elements is also changed. When you pop an element, you can assign it to another
+scalar, so that it isn't lost, but this is optional.
+
+Slide 59 - shift
+
+my $first_element = shift @comma_made_array; # shift off the start of array (v. important later on)
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+
+shift removes the first element of the array. Again, completely, and it can be assigned to another scalar.
+
+Slide 60 - unshift
+
+unshift @comma_made_array, $last_element; # unshift onto start of the array
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+
+unshift puts elements onto the start of the array. As with push, it can be a single element or and array,
+and they will remain in that order.
+
+shift and unshift will alter all the indices of existing elements
+
+Slide 61 - splice
+
+splice @comma_made_array, 3, 0, @x_generated_array; # insert elements into array (changes indices of following elements)
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+splice @comma_made_array, 6, 1, 'shadow'; # swap an element
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+splice @comma_made_array, 5, 1, 'very', 'big'; # swap an element for more than 1 element (changes indices of following elements)
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+splice @comma_made_array, 3, 2; # remove elements (changes indices of following elements)
+say scalar @comma_made_array;
+say join ' ', @comma_made_array;
+
+Modifying the ends of the array are all well and good, but if you want to work on the internals of the array, then
+you need splice. It can insert elements, swap elements and remove elements.
+

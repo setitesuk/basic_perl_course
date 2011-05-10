@@ -1,0 +1,73 @@
+  Script:
+    Procedure - I want to boil some water
+
+    Aim is to run
+    
+    boil_water.pl
+
+  Modules:
+    Provide procedural methods to facilitate that
+    Aim to return boiled water
+
+    use Water qw{boil};
+
+    boil();
+
+    package Water;
+    export boil
+    
+    sub boil {
+       get an object which can boil water
+       add water to it
+       boil the water
+       return boiled water
+    }
+    1;
+
+  Objects:
+    Provide 'things' which can help with boiling water
+    Kettle or Saucepan and Stove
+
+    package Kettle;
+    use Moose;
+    
+    has q{water} => ( isa => q{Bool}, is => q{rw}, predicate => q{has_water} );
+    has q{is_boiled} => ( isa => q{Bool}, is => q{rw} );
+    has q{is_filled} => ( isa => q{Bool}, is => q{rw} );
+    has q{filling} => ( isa => q{Str}, is => q{rw} );
+
+    sub fill_with {
+      my ( $self, $liquid ) = @_;
+
+      if ( $self->is_filled() ) {
+         return __PACKAGE__ . q{ is filled, with } . $self->filling();
+      }
+
+      if ( ! $self->can( $liquid ) ) {
+        return __PACKAGE__ . q{cannot be filled with } . $liquid;
+      }
+
+      my $has_method = q{has_} . $liquid;
+      if ( $self->$has_method() ) {
+        $self->$liquid( 1 );
+      }
+      $self->is_filled( 1 );
+      $self->filling( $liquid );
+      return __PACKAGE__ . q{ filled with } . $liquid;
+    }    
+
+   sub empty {
+     my $self = shift;
+     $self->filling( q{} );
+     $self->is_filled( 0 );
+     $self->is_boiled( 0 );
+     return;
+   }
+
+   sub boil {
+     my ( $self ) = @_;
+     $self->is_boiled( 1 );
+     return 1;
+   }
+   
+   1;

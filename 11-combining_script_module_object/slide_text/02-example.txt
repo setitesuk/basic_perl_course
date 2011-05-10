@@ -1,0 +1,44 @@
+Example: Producing a cup of tea
+
+Script: make_tea
+
+This is a process. So we want the script to go from start to end
+
+1) get kettle
+2) fill kettle with water
+3) boil water
+4) get cup
+5) get teabag
+6) put teabag in cup
+7) add boiling water to cup
+8) allow to brew
+9) remove teabag from cup
+10) add sugar
+11) add milk
+12) add lemon
+13) drink
+
+This is what it needs to do.
+
+Modules:
+
+Are there any processes which are repeated, and could be put into a module
+
+adding something to something else?
+
+Objects:
+
+We have those
+
+Kettle
+Cup
+Teabag
+
+What do each of them have/do
+
+Kettle - needs to be able to be filled with water, needs to boil water, needs to be able to be poured
+Cup - needs to be able to have a teabag, water, milk, sugar, lemon, needs to be able to remove a teabag, needs to be drunk
+Teabag - can be fresh/spent
+
+So we can see options to utilise all three, although in practice with this, we probably wouldn't write a module just to provide hold the adding function, unless we could see benefits outside of making a cuppa.
+

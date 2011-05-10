@@ -1,0 +1,98 @@
+### From now on in, we are going to use Sequence manipulation as our project, and move through from a procedural script (which we have been doing), to a script using self-written functions (the next section), to taking those functions and making them reusable between scripts via modules, and then onto objects.
+
+
+### What is a function?
+
+We have been calling functions throughout our course so far
+
+print
+say
+die
+if
+chomp
+open
+close
+substr
+push
+shift
+...
+
+These are sometimes referred to as keywords as the are perl core functions. The do something to or with the parameters provided to them.
+
+Some are imported in when we 'use' something, such as our friend File::Slurp, which imports the functions read_file and write_file. In this case, we have imported in a function which behind the scenes does all the opening, printing and closing of filehandles for us.
+
+What benefits do we get from functions?
+
+ - they do a job for us
+ - save us writing code
+ - enable us to reuse code, so smaller code base and less cutting and pasting.
+
+What is the difference between a function, a method and a subroutine (in Perl context)?
+
+ - None
+
+Since we have been using functions already, we have seen syntax of how to use them. In this section, we are going to formalise that syntax, and write a function or two.
+
+# syntax for using a function
+
+We have seen the following function calls
+
+if ( $true ) {
+  ...do something
+}
+
+print 'true' if $true;
+
+say 'Hello World';
+
+my $data = read_file( 'data_file' );
+
+Whilst they all look different, the perl interpreter knows how to utilise the way functions work to decide how to operate.
+
+1) Parameters are always a list (array) of items after the function name
+
+  if ( $true )              # the braces indicate the lit of items to pass to if
+  if $true                  # there is a single item, but this is passed to if as the first item of a list
+  print 'true'              # we pass a single string as the first item of a list to print
+  say 'Hello World'         # we pass a single string as the first item of a list to say
+  read_file( 'data_file' )  # we pass a list of items, containing 'data_file' to read_file
+
+What we know from this that functions require a list of parameters.
+
+2) Functions always return
+
+This may seem obvious, but we need the code to return back to the caller, in order to proceed
+
+3) Perl/we checks the return value
+
+We can capture a return value
+
+my $data = read_file( 'data_file' );
+
+In this case the return value is the content of 'data_file'
+
+We can do something if it is true
+
+print 'true' if $true;
+
+If the return value of the call to if is true, then we will print
+
+if ( $true ) {
+  ...do something
+}
+
+If the return value of the call to if is true, then we will activate the block of code
+
+We can ignore the return value
+
+say 'Hello World';
+
+
+Our simplest explanation of a function call can be summed up as
+
+return_value = function ( list_of_parameters );
+
+noting that return_value can be a scalar, an array, undef
+
+With that in mind, lets create a function which takes some parameters, and returns something;
+

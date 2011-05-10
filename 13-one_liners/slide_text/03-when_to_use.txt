@@ -1,0 +1,11 @@
+When to use
+
+Because of the ability to pipe from/into other commands, one liners get significant power, as you can use the power of perl to manipulate outcomes, but the power of other programs like cat/grep to save you needing to reinvent the wheel
+
+lets look for something which could find all files with a size less than 72 bytes in the data
+
+ls -l  data/ | grep -v total | perl -le '@lines = <STDIN>; @capture; foreach $file_info (@lines) { @temp = split /\s+/xms, $file_info; if ( $temp[4] < 72 ) { push @capture, $temp[-1]; } }; print join "\n", @capture;'
+
+pipes into the perl gives access to the data via STDIN
+
+So only use when the power of perl helps you find something

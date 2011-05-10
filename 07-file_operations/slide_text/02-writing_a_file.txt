@@ -1,0 +1,80 @@
+### writing a file
+
+# we looked at the data source file, but you are going to want your results to go somewhere else, and are
+# likely to want to store them in a file.
+
+use File::Slurp;
+
+# In bin/02-writing_a_file.pl we have an array of sequences (they would have been generated in some way),
+# that we want stored into a file.
+
+write_file( 'data/short_reads.seq', @sequences );
+
+# check the file data/short_reads.seq. You'll see all the reads are now in there, ready to be passed on,
+# archived, processed further...
+
+# As with reading, there is the full way of doing it. This is very useful if you need to write periodically
+# (e.g. a log file) or you need to write specific data, or just modify data in the file
+
+# first, direct equivalent to write_file
+
+# open a file handle to the file you want to write to
+
+open my $fh, '>', 'data/my_book' or die 'could not open data/my_book';
+
+# $fh as with reading, we need a file handle
+# '>' this means for writing, overwriting any existing file with this name
+# 'data/my_book' the file we want to write into
+# or die 'could not open data/my_book'; again, we always error handle an open
+
+foreach my $seq ( @sequences ) {
+  print {$fh} 'Andy ' . $seq or die 'Unable to print to filehande: ' . $fh;
+}
+
+# In this loop, as we process the elements, we print to the filehandle our data.
+# The advantage of this is that if it takes a lot of processing to create each sequence, then we can print as we generate each sequence, rather than collect them all in one go
+
+# we put the filehandle in {} so that the interpreter knows that it is 'where to print to', rather than needing to check at runtime if it is a variable to print, or something to print to
+
+close $fh or die 'could not close filehandle: ' . $fh;
+
+# exactly as with reading, we close the file handle.
+
+## I want to add some more to a file
+
+## If you want to append to a file (example, you have a script which runs every hour on a cron, then
+## you don't want to kill data generated in previous hours)
+
+open $fh, '>>', 'data/my_book' or die 'could not open data/my_book';
+
+# '>>' this means for appending, creating the file if it did not already exist
+
+foreach my $seq ( @sequences ) {
+  print {$fh} 'James ' . $seq or die 'Unable to print to filehande: ' . $fh;
+}
+
+# we'll add James this time, so that we can see it has been added
+
+close $fh or die 'could not close filehandle: ' . $fh;
+
+# we close again
+
+###### SLIDE ONLY
+
+### Now, this has talked about what you might have wanted to go to STDOUT.
+### You can make STDOUT and STDERR go to a file, so that you don't need the {$fh}
+
+### The uses here are log files, where you want to capture any errors, maybe also print there
+
+open STDERR, q{>>}, $log_file or die qq{Unable to open log file as STDERR:$EVAL_ERROR};
+# this overwrites the STDERR current location by opening a filehandle into it's space
+
+print {*STDERR} $log_string or warn qq{$log_string};
+# now if we print to the STDERR space, or warn (which defaults to STDERR), the printed
+# string goes to our log file
+
+### WARNING - I would suggest you only do this for STDERR, not STDOUT, as it will
+### confuse you when what you might have expected to have gone to screen, starts
+### disappear.
+
+

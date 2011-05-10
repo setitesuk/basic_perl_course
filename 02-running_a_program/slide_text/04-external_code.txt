@@ -1,0 +1,39 @@
+We can also load in external code, which can give us access to additional functions,
+or checks the code as it compiles for us to ensure integrity.
+
+Lets take a look at brave_new_world.pl
+
+#!/Users/ajb/dev/bin/perl -w
+
+Shebang line, no change there.
+
+use Modern::Perl;
+
+This tells the compiler to stop processing this script, and load and compile the
+module package 'Modern::Perl'. Once it has successfully done this, continue compiling
+the rest of the script.
+
+say 'Welcome, to a whole new world.';
+
+Now we have access to a new keyword function 'say'
+
+>bin/brave_new_world.pl
+Welcome, to a whole new world.
+>
+
+This has printed the string to the screen, but with a newline added to it.
+
+If you try taking out the line 'use Modern::Perl;', and then try running
+
+>bin/brave_new_world.pl
+Unquoted string "say" may clash with future reserved word at bin/brave_new_world.pl line 5.
+String found where operator expected at bin/brave_new_world.pl line 5, near "say 'Welcome, to a whole new world.'"
+	(Do you need to predeclare say?)
+syntax error at bin/brave_new_world.pl line 5, near "say 'Welcome, to a whole new world.'"
+Execution of bin/brave_new_world.pl aborted due to compilation errors.
+
+Here we have an error, because the compiler can't find the keyword 'say'. The code comes from having loaded
+and compiled the external code, to give access to it. We will look at modules of code later, but
+we will be using 'use Modern::Perl;' in our examples, mostly for the 'say' keyword.
+
+

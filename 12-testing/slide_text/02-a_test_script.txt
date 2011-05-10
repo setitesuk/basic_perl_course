@@ -1,0 +1,29 @@
+## A Test Script
+
+use Test::More tests => 1; # use the Test::More module, with a tests count of 1, as we want to run one test.
+
+my $script_output = qx{bin/hello_world.pl}; # wrapping a command in qx{} tells perl to go out to the shell and run that script, returning any STDOUT
+
+is( # call the imported 'is' method, with parameters 
+  $script_output, # the item we want to test
+  "Hello World\n", # the thing we want to test against
+  'hello_world.pl returns Hello World' # a comment to give against the test in output
+);
+
+
+We run the script with prove
+
+>prove -v t/hello_world.t
+
+-v means run in verbose mode
+generally, test files live in the t/ directory, to keep them separate from code you might deploy, and always have a .t extension
+
+1..1
+ok 1 - hello_world.pl returns Hello World
+ok
+All tests successful.
+Files=1, Tests=1,  0 wallclock secs ( 0.02 usr  0.00 sys +  0.03 cusr  0.01 csys =  0.06 CPU)
+Result: PASS
+
+Testing a script is useful, but if the script needs you to be interactive, it can be more tricky. In these circumstances, you want to be looking at what you need to test, and what is easiest to test.
+

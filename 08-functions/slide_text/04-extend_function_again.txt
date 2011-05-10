@@ -1,0 +1,66 @@
+### further extension
+
+Lets try and extend the function so that we can see if the amino acid is present by it's name, checking all codons relating to it.
+
+
+sub find_amino_acid {
+# we change the name to be more generic
+
+  my ( $sequence, $amino_acid ) = @_;
+# and do the same for the variable, as $codon suggests a sequence
+
+  say "I am going to see if I can find $amino_acid in $sequence:";
+# Lets move part of the output message - what it is doing - into the function that is doing that thing
+
+  my %genetic_code_data = (
+    'Alanine' => [ 'GCA', 'GCC', 'GCG', 'GCT' ],
+    'Lysine' => [ 'AAA', 'AAG' ],
+    'Methionine' => [ 'ATG' ],
+    'Stop' => [ 'TAA', 'TAG', 'TGA' ],
+  );
+# lets store within the function the amino acids and the codons associated with them. We could have a function call here which would retrieve it from a file/database, but lets hard code for now.
+
+  my $return;
+# we want our return flag
+
+  foreach my $codon ( @{ $genetic_code_data{ $amino_acid } } ) {
+
+# we'll set up a loop, which goes over the codons related to the amino acid requested
+
+    if ( $sequence =~ m/$codon/ixms ) {
+      $return = 1;
+      last;
+    }
+
+# and do our match - we only care if we see a match, so lets get out as soon as we match to improve speed
+
+  }
+
+  return $return;
+}
+# return our value and close block
+
+Lets look at this working
+
+my @seqs = qw{
+  ACTGATCGATAGCTAGCTAGCTAGGCT
+  ACGTAGCTGACAGCTGACGGCTAAAAG
+  GCTGATCGATGCTAGGCTTTAGGGGAA
+  AGCTGATAGTATTAAAAAATATATAAA
+  AAGCTTGCATGCCCGGGATCGGTCGCT
+  CCCGTTCGTCGCTGCTCGTCGTCGTCG
+};
+
+foreach my $amino_acid ( qw{Alanine Lysine Methionine Stop} ) {
+  foreach my $sequence ( @seqs ) {
+    if ( find_amino_acid( $sequence, $amino_acid ) ) {
+# here we make a call to our extended, more generic function, which take the amino acid we are currently looking at.    
+      say "\tFound";
+    } else {
+      say "\tNot Found";
+    }
+# we only want to say found or not found here, since we know the function will report what sequence was looked at, and what amino acid was looked for
+  }
+}
+
+Functions can call other functions, and within them you can do anything that you could do elsewhere in Perl. They are like a mini-script that has parameters passed in, and is most likely to be returning values back to the main script

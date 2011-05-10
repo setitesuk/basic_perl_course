@@ -1,0 +1,45 @@
+Combining Scripts, Modules and Objects
+
+When you want to develop, there is no reason not to only use scripts if that is what you are comfortable with, but let's look at why you want to consider all the three options.
+
+1) Script
+
+The backbone has to be a script in some format. That is going to be what everyone calls to run the program. It represents the process from start to end.
+
+Important features:
+
+a) Name - make the name relevant, memorable, as short as you can, and how you call the script. It will be what your end user will file as a bug report, so it should be identifiable.
+
+b) Keep the code flow sensible - As you read down your script, you should be able to follow what it is doing.
+
+c) If you need to write the same code multiple times, see if you can put it into a sensibly named function
+
+d) Only keep code which cannot be used elsewhere, in the script
+
+e) any interactivity is best kept to the script
+
+2) Module
+
+If you are finding you are writing lots of functions, then you should consider breaking these out into a module. This will clean up your script so it is only the way you want to run the procedures.
+
+Important features:
+
+a) Name - make the name of the module(s) relevant to the functions they are going to provide. This will help you remember what functions you are going to import, and make the code more identifiable to others, who may then reuse it.
+
+b) Don't forget, you need to export the functions
+
+c) Try to make the functions as 'black box' as possible - people want to reuse the code, don't make them too specific
+
+i.e. find_sequence rather than find_codon
+
+3) Object
+
+If your functions need to be very specific, or you are trying to represent data, then you should consider making an object. If you want to produce sequence, then you want a sequencing machine, which is an object, so make it so in code. If you have data representing amino acids, and bundle that data as an amino acid object.
+
+Important features:
+
+a) Name - your name should represent the object, as specifically as possible - call a sequencing machine a Sequencer, not AProductionMachine
+
+b) Methods should be relevant to the object, whether called within the object, or not
+
+c) Make your attributes relevant - if you have a Sequencer, then have attributes that a sequencer would find relevant, such as flowcell, camera, reagents rather than contents, equipment

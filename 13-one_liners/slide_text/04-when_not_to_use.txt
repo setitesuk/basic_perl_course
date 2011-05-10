@@ -1,0 +1,19 @@
+When not to use
+
+Because you have the full power of perl, it can be tempting to just write a one-liner to solve a problem.
+
+I mean, after all, you are only going to want to solve this once, or if you just want to see if something is stuck, then surely it's not necessary to write a script.
+
+Wrong!
+
+If you are writing more than 3 statements in a one-liner, think about why you are writing this.
+
+If you are writing the one-liner to tell you something about a pipeline you are running, don't you think you'll want to run it tomorrow, or next week?
+
+If you expect to run it more than once, you should think about writing a script:
+1) You only need to call the script name, even if you do put it in pipes
+2) you can write some tests for it
+3) Someone will ask you for it - isn't it easier to give them a script name to call, rather than a email client formatted 300 character one-liner
+4) It will become part of a project (even if you try to keep it separate)
+5) You can start to refactor and capture the code - maybe it should be available in a module for others to use
+

@@ -1,0 +1,28 @@
+How do I use one-liners?
+
+You can probably tell I'm not overly keen on one-liners. I use them solely for testing out something I can't remember what will happen.
+
+i.e. If I want check if I print the array or scalar with print @array
+
+My code I want to write is
+...time consuming code which generates an array...
+print @array;
+
+I don't want to run my script to check what I want it to print, but I can't remember if I need the scalar keyword to display the number of elements with print.
+
+so I quickly write
+
+>perl -le '@array = qw{hello goodbye smith jones}; print @array'
+
+on the command line and run it
+
+hellogoodbyesmithjones
+
+So print just concatenates all the array together and prints it, so I quickly tap up, and add in scalar
+
+>perl -le '@array = qw{hello goodbye smith jones}; print scalar @array'
+4
+
+So I know that in order to print the number of elements, I need to remember to explicitly write in 4
+
+Job done. I can move on with my code. Everything else I do, I write in a script/module/object and test! I know I am going to want to do it more than once.

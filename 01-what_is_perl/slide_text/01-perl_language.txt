@@ -1,0 +1,49 @@
+Slides 5->10
+
+Perl is an Interpreted language.
+
+For Perl programs to run, they must be run 'through' an interpreter program. This
+program then deals with compiling the code into something that the computer understands,
+and then executes the program.
+
+Perl is a Dynamic language.
+
+Because of this compilation at request, it can be easily changed to deal with bugs
+and requirements changes.
+
+It can compile and execute new code whilst it is running, therefore allowing you
+to modify the program 'on the fly'.
+
+It can run code during compilation, thus allowing you to be able to do setup stuff before
+you have committed to compile and execute.
+
+It can embed and run other languages within scripts, and other languages can embed and
+run it within their scripts.
+
+Perl is a Procedural language.
+
+The primary way of running a Perl program is through a series of statements, which
+are read and executed from top to bottom. This makes Perl very fast at just going through
+and doing a list of things.
+
+Perl is Dynamically typed.
+
+Variables in Perl are checked are runtime, as opposed to compile time, which gives flexibility
+of creation (you don't need to declare something is a number), but loses you the 'guarantee'
+that static typing gives (you can't be 100% sure that you will have a number)
+
+Perl supports multiple programming paradigms.
+
+As well as procedural, it supports Object Oriented and Functional programming styles,
+as well as other features.
+
+Slide 11
+
+Slogans
+
+'There's more than one way to do it' and 'Easy things should be easy and hard things should be possible'
+
+These two slogans are support both sides of the arguments surrounding Perl as a language
+to use. We like Perl here, and I hope at the end of the course, you will know how to use
+Perl, and hopefully use it in a good way.
+

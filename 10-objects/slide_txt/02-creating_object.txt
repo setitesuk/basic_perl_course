@@ -1,0 +1,59 @@
+### Creating an object
+
+First and foremost, an object is a package, more usually referred to as a class. However, what that means is that the code is just a module, and we set it up with two important module features:
+
+package SequenceManipulator;
+
+# a package name
+
+1;
+
+# the final true value
+
+Perl has no idea that this is an object, nor will it until it has been instantiated as one. For this, we need to provide
+a method called 'new'.
+
+Thankfully, this is where Moose comes in.
+
+package SequenceManipulator;
+
+use Modern::Perl;
+use Moose;
+
+1;
+
+If we have time later, we'll look at writing a new method, but it is virtually the same in every object class you will ever write, so just 'use Moose;'
+
+Note, we don't need any of that export stuff. Objects keep all their functions or 'methods' with them.
+
+We now want to use the object. We need a script (see 01-use_SequenceManipulator.pl)
+
+use lib 'lib'; # we still need to tell the script where to look for our class module
+use SequenceManipulator; # we need to 'use' the module, for the interpreter to compile the code for us
+
+my $sequence_manipulator = SequenceManipulator->new(); # create the object
+
+Moose gives automatically gives our class module the method new, which we call using the arrow (->) operator.
+
+You'll remember us using that to get at key-values or index-values in reference data structures. This is very much the same principal.
+
+If we take a look at the variable $sequence_manipulator:
+
+say $sequence_manipulator; # SequenceManipulator=HASH(0x8100e0)
+
+Lets look at this:
+
+HASH(0x8100e0)
+
+The first thing we spot is that we have a hash reference. This is just a like we saw in section 3 - variables and data structures - references
+
+So we have a data structure reference of the type HASH. What does the other part mean though?
+
+SequenceManipulator=
+
+We see our package or class name, with the = sign. This tells us that the HASH reference has been 'blessed' into the package SequenceManipulator. Don't worry too much about the term 'blessed'. It basically means we have an object of the class SequenceManipulator, which we will be able to call methods and attributes on.
+
+(It is worth noting that you might sometimes see ARRAY or SCALAR instead of HASH - don't worry, you use them all the same way)
+
+Let's add some attributes.
+

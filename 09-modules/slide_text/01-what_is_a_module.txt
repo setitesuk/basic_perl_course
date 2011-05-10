@@ -1,0 +1,145 @@
+### What is a module?
+
+So far we have created scripts with functions (and without), and seen functions be called.
+
+In our last workshop, we finally ended up with a script with many functions. What we might be able to see
+is that some of these functions we might want to use in another script.
+
+How useful is it to see if a codon is present in a DNA sequence? We could potentially use that in
+a number of scripts.
+
+The problem though is that, if the code is in a script, it is only usable by that script.
+
+The solution - put it in a piece of code that can be used by many scripts - A Module.
+
+I have met people who seem to think that modules are quite scary. For three reasons:
+
+1) It's outside of my script, I can see what is going on in my script
+2) Is it really perl?
+3) Extra files are likely to get it noticed
+
+Answers to these
+
+1) Do you really want to cut and paste all that code so many times.
+   If you know what the function does, then you don't need to see it, and therefore copy and paste it.
+
+2) Yes
+
+3) This is actually a good thing (tm) because if more people look at it, you get more support long term
+
+So, don't be scared about modules. We are only writing perl code, just in another file, to allow code to
+be reused.
+
+### What is in a module?
+
+Firstly, it is a file of perl code, named with a .pm file extension instead of .pl
+You often find them in a directory called lib
+
+Module code contains a number of things. Some optional, some not.
+
+1) A package name.
+
+  package DnaHelpers;
+
+Perl needs to know a package name for the code in the module, so this is compulsory, and must be the first line of code in your file. In your script, all code is in the 'main' package. Modules are not within this, so you need to specify a name. This is the name of the file, less file extension.
+
+This enables our script to
+
+  use DnaHelpers;
+
+Which we have seen before with 
+
+  use File::Slurp;
+
+2) functions
+
+We can write any functions we like in here. They do not need to know about one another, use the same variables, or even have any true bearing on the theme of the module (although you should have a reason for putting extra stuff in).
+
+The functions are written in precisely the same way as they are in a script.
+
+  sub find_amino_acid {
+    my ( $sequence, $amino_acid ) = @_;
+    ...
+    return $return;
+  }
+
+3) A way of exporting those functions
+
+There are two ways of utilising functions in a Module. We are going to look at the non-object oriented way in this section.
+
+  use base 'Exporter';
+  our @EXPORT = qw{find_amino_acid};
+
+First we use another module to which provides all the basic information to allow us to export methods
+
+  use base 'Exporter';
+
+Because we use this, what will happen now is that all the functions listed in this special array
+
+  our @EXPORT = qw{find_amino_acid};
+
+will be handed over to the script that calls
+
+  use DnaHelpers;
+
+so that they can use the call the function find_amino_acid
+
+4) Call in other modules
+
+  use Modern::Perl;
+
+As the module is just perl code, it can call in other modules to use just like a script.
+
+5) No code outside of the functions, apart from setup
+
+Modules are not scripts, so writing
+
+  say 'Hello World';
+
+outside a function will confuse perl.
+
+6) 1;
+
+The last line of your module must be a true statement. This has meant that most (all?) modules will finish with
+
+  1;
+
+in order to ensure that this requirement is fulfilled.
+
+# using it
+
+Now, in order to use the module, we need to tell the script where it can be found, and what it is
+
+  use lib 'lib'; # this tells our script to also look in the lib directory of the current directory
+  use DnaHelpers;
+
+So, let's run bin/01-without_find_amino_acid.pl
+
+It works.
+
+But that's not enough. Looking at our other functions, we can see that obtaining the amino acid information is
+useful by itself, so lets move amino_acid_codes out.
+
+And also, since we produce a data structure of sequence against amino acid code, then perhaps this might be
+useful elsewhere, so we'll also move out sequence_and_present_amino_acid_codes
+
+We'll leave write_sequences_with_amino_acid_codes_to_file in the script, since this is dealing with how to output
+some information.
+
+We have moved 3 functions into our module (look at DnaHelpersExtended). We need to add these into the @EXPORT array,
+and then modify our script to use DnaHelpersExtended (see bin/01-without_many.pl)
+
+If we run that, it works.
+
+Most (all worthwhile) reusable code is found in modules. The greatest source of these are found
+on the Comprehensive Perl Archive Network (CPAN). If we get time later on, we'll look at how to
+download off the CPAN, but chances are, if you need to do it, someone has already written a module
+to do it. Everything on the CPAN is free for you to download and use in your own projects. It is 
+also worth noting that there are extensive bioperl tools there, so most of what we are doing is
+actually re-inventing the wheel.
+
+Search for it, and then find it and use it, or write it and submit it back.
+
+
+
+

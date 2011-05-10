@@ -1,0 +1,86 @@
+##### File Operations
+
+# your end user is not going to want to enter all his data either on the command line (ARGV), or
+# interacting with the program (STDIN). Most data is likely to come from a file or database.
+
+# you also don't want to have to 'screen scrape' your end data, you want this to be stored somewhere
+
+# Database interaction is beyond the scope of this course, although the techniques you learn
+# here will help. But we will look at files.
+
+# There is a great module written for us which takes all the headache out of opening and closing
+# files for both reading and writing.
+
+use File::Slurp;
+
+# This imports two functions read_file and write_file
+# Lets look at reading a file
+
+# slurp in a whole book
+
+my $slobbit = read_file( 'data/the_slobbit' );
+
+# Now we have some data in the program.
+
+# we can view it
+say $slobbit;
+
+# we can do something to it
+# Nobody wants me to be the hero of the story - $hobbit is just a string
+
+$slobbit =~ s/Andy/Bilbo/gm;
+
+say 'Hero changed';
+say $slobbit;
+
+# but we haven't changed the file - take a look at data/the_slobbit
+
+
+# our data may be in some table like format, so we probably don't want it all in one scalar
+
+# slurp in a qseq file, with rows going into an array
+
+my @reads = read_file( 'data/1234_1_qseq.txt' );
+
+say @reads;
+
+# We want just the DNA sequences
+
+foreach my $read ( @reads ) {
+  my @data = split /\s+/m, $read;
+  say $data[8];
+}
+
+# In both of these cases, we are going to need to watch the memory, as all the file is being read in at once.
+
+# In many cases, always take advantage of File::Slurp
+
+# However, if you want to do it completely by yourself, you need to go through some steps
+
+# open a file handle to the file you want to read
+
+open my $fh, '<', 'data/the_slobbit' or die 'Could not open data/the_slobbit for reading';
+
+# $fh is a file handle
+# '<' means for reading only
+# 'data/the_slobbit' is the filename
+# you must always give an option to the program to do something if the file can't be opened, in this case die with a message
+
+while ( <$fh> ) {
+  s/Gran/Uncle/xms;
+  print;
+}
+
+# the file handle can act just like an array, so we can (for example) loop on it, processing a line at a time
+
+close $fh or die 'Could not close the filehandle for file data/the_slobbit';
+
+# You must close the filehandle, with an option to do something if it can't close (this is unlikely to happen)
+
+# The advantage of this is that you will only read out of the file the next line to process, so in the case of a
+# million+ line fastq file, you won't fill your memory up.
+
+# The disadvantage is that your files may become altered/vanish/locked during this time, causing problems either
+# for your program, or other users.
+
+

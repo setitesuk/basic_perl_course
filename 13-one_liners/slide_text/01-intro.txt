@@ -1,0 +1,36 @@
+One Liners
+
+No introductory perl course would be complete without an introduction to perl one-liners. 
+
+Now, depending on how you look at it, these are the most useful things possible, or the worst idea ever imagined.
+
+Perl one-liners are exactly what they say on the tin. A perl script, in one line, on the command line.
+
+Just try typing the following on the command line:
+
+/software/perl -le 'print q{Hello World}'
+
+Lets look at it
+
+/software/perl
+
+The first argument of any command line is the executable you want to run. In this case, we'll run the perl interpreter.
+
+-le
+
+This is actually two options
+
+-l => all print statements should automatically have a newline appended to them
+
+-e => tells the perl executable to treat the compile and and execute the next item (within quotes)
+
+'print q{Hello World}'
+
+The perl 'script' we want to compile and execute, in this case the statement print q{Hello World}
+Note: We must use the q{} form of quoting, as the next ' will close the execute statement
+
+When we run it, we get the output
+
+Hello World
+
+

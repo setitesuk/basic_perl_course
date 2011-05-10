@@ -1,0 +1,21 @@
+Alanine Ala GCA GCC GCG GCT 
+Arginine Arg AGA AGG CGA CGC CGG CGT 
+Asparagine Asn AAC AAT 
+Aspartic_acid Asp GAC GAT 
+Cysteine Cys TGC TGT 
+Glutamic_acid Glu GAA GAG 
+Glutamine Gln CAA CAG 
+Glycine Gly GGA GGC GGG GGT 
+Histidine His CAC CAT 
+Isoleucine Ile ATA ATC ATT 
+Leucine Leu CTA CTC CTG CTT TTA TTG 
+Lysine Lys AAA AAG 
+Methionine Met ATG 
+Phenylalanine Phe TTC TTT 
+Proline Pro CCA CCC CCG CCT 
+Serine Ser AGC AGT TCA TCC TCG TCT 
+Stop Stp TAA TAG TGA 
+Threonine Thr ACA ACC ACG ACT 
+Tryptophan Trp TGG 
+Tyrosine Tyr TAC TAT 
+Valine Val GTA GTC GTG GTT

@@ -1,0 +1,54 @@
+Extending the one-liner
+
+You can put more in the one liner. We can use modules, and do multiple statements, including loops
+
+perl -MFile::Slurp -le '@lines = read_file( q{data/text} ); foreach my $line ( @lines ) { print $line; }; print q{read file data/text};'
+
+Lets look new parts
+
+-MFile::Slurp
+
+This is equivalent to the use statement. We can have as many of these as we need
+
+-MFile::Slurp -MModern:Perl -MTest::More...
+
+'@lines = read_file( q{data/text} ); foreach my $line ( @lines ) { print $line; }; print q{read file data/text};'
+
+How ugly is that. Anyone want a try to read what we are doing?
+
+We have 3 statements here, all chained, since perl is whitespace agnostic (i.e. it doesn't matter how many whitespaces there are, and the newline isn't needed at the end of a statement), we can just write statement (or block) after statement, as long as we include the statement separator.
+
+In a script, we'd have
+
+@lines = read_file( q{data/text} );
+foreach my $line ( @lines ) {
+  print $line;
+}
+print q{read file data/text};
+
+Much more readable.
+
+Anyway, lets run it!
+
+This is some
+
+text. If you want my advice, don't
+
+read me with a one-liner
+read file data/text
+
+
+So, we can write an entire script in the one-liner, the limit is that you can't have more characters than the operating system will allow.
+
+However, as our text suggests, don't try doing something like read in a one-liner.
+
+You can also extend by piping in or out of the one liner, for example, we only want to grep for lines that contain read
+
+perl -MFile::Slurp -le '@lines = read_file( q{data/text} ); foreach my $line ( @lines ) { print $line; }; print q{read file data/text};' | grep read
+
+read me with a one-liner
+read file data/text
+
+
+
+

@@ -1,0 +1,25 @@
+## test an object
+
+So, we test an object. It's very similar to testing a module, except that we will be testing calls on an object.
+
+Lets test our PerlSequencer can actually produce reads of a given length
+
+use Test::More tests => 203;
+
+use_ok( 'PerlSequencer' ); # As we just use an object, we can use the same test to ensure it compiles
+
+my $sequencer = PerlSequencer->new(); # we will need to create an object to test it's modules
+
+isa_ok( $sequencer, 'PerlSequencer', 'object' ); # isa_ok will check the object is of the given type
+
+my @sequences = $sequencer->produce_reads( 25 ); # capture some data from the method we want to run
+
+is( scalar @sequences, 200, q{produce reads produced 200 reads} ); # we expect that it will always produce 200 reads, so check the number of sequences obtained
+
+my $count = 1;
+foreach my $sequence ( @sequences ) {
+  is( length $sequence, 25, "sequence $count has length 25" );
+  $count++;
+}
+
+# loop through all the array, checking that every sequence has been produced with the expected read length

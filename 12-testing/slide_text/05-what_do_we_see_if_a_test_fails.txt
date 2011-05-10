@@ -1,0 +1,32 @@
+### What if a test fails
+
+If a test fails, prove and Test::More combine to inform us.
+
+use Test::More tests => 1;
+
+is( 'true', 'false', 'We expect this to fail' );
+
+We know that true and false are different, so we have made this test fail. Lets see it
+
+prove -v t/fail.t
+
+1..1
+not ok 1 - We expect this to fail
+
+#   Failed test 'We expect this to fail'
+#   at t/fail.t line 3.
+#          got: 'true'
+#     expected: 'false'
+# Looks like you failed 1 test of 1.
+Dubious, test returned 1 (wstat 256, 0x100)
+Failed 1/1 subtests 
+
+Test Summary Report
+-------------------
+t/fail.t (Wstat: 256 Tests: 1 Failed: 1)
+  Failed test:  1
+  Non-zero exit status: 1
+Files=1, Tests=1,  0 wallclock secs ( 0.02 usr  0.00 sys +  0.02 cusr  0.00 csys =  0.04 CPU)
+
+Obviously, in this case, we know this was to fail, but if you know what part of the code you are testing, it can help you locate what went wrong.
+

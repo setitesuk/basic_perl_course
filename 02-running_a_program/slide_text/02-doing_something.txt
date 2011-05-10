@@ -1,0 +1,47 @@
+Slide 9
+
+Now, there is little point having a script which executes, but does nothing. So whilst we
+only need:
+
+#! /Users/ajb/dev/bin/perl -w
+
+It's not very helpful. Let's add:
+
+print 'Hello World!';
+
+Let's run it!
+
+ajb>bin/hello_world.pl
+Hello World!ajb>
+
+
+Slide 10
+
+This shows you an instruction (statement) in perl. Let's take a look:
+
+print
+
+This is a keyword, or function. It is part of the base perl language, and it tells perl to
+act on (in this case 'print' to screen) the next argument that it reads.
+
+'Hello World!'
+
+The argument to be acted upon. Some text in quotes like this are a string.
+This means that we are telling perl to print to the greeting Hello World!
+
+;
+
+This is possibly the most important part of the whole statement. It finishes our
+statement, and tells perl that it can now 'do' whatever it has just read. Leaving
+this out will cause problems.
+
+Slide 11
+
+Comments:
+
+# this is a comment to explain print (do this function on) 'Hello World!' (this string) ; (end of statement)
+
+Whenever the compiler reaches a # symbol (apart from a couple of exceptions), it treats the rest of the line
+as comment, and so will not compile anything there, even if it is code. Commenting can help you when you
+come to go back over code and find out what it was trying to do, or can help you remove something quickly
+during development

@@ -1,0 +1,92 @@
+Slide 62
+
+Unfortunately, a big problem exists with arrays. You often have to remember at what index everything is
+
+i.e.
+
+my @personal_info = ( qw{Andy Brown 180 brown blue} );
+
+I could conceivably have blue hair (dye) and what is the 180 for.
+And depending on who has written the code or what country we are in, Andy could be a forename or a surname.
+
+Slide 63
+
+Thankfully we have associative arrays, or hashes.
+
+Hashes give a name to each element, rather than an index, so we can use this to get the data.
+
+my %personal_info = (
+  forename => 'Andy',
+  surname  => 'Brown',
+  height   => '180',
+  hair     => 'brown',
+  eyes     => 'blue',
+);
+
+
+Slide 64
+
+To access the data, we then write a similar scalar request to the array one.
+
+say $personal_info{forename};
+
+Slide 65
+
+Use a % instead of $ or @
+
+plurality tends to depend on the information
+
+Still assigned to via the = assignment operator
+
+Slides 66/67
+
+### 2 methods of assignment
+
+# unclear assignment, but shows can be constructed like an array
+my %string_key_and_value_hash = qw{key1 val1 key2 val2 key3 val3};
+
+say %string_key_and_value_hash; # why are they in random order
+
+# clearer assignment
+my %string_key_any_value_hash = (
+  key1 => 'val1',
+  key2 => 'valB',
+  key3 => '3',
+  key4 => undef,
+);
+
+# basically, the => is like a comma, and is commonly known as the 'fat comma'
+# but it tells the perl interpreter that your key does not need to be quoted (unless it contains 'odd' chars)
+
+Slide 68
+
+# print all, but in ends up in random order
+say %string_key_any_value_hash;
+
+# print all in keys alphanumerical order
+foreach my $key ( sort keys %string_key_any_value_hash ) {
+  say $key . q{ : } . $string_key_any_value_hash{$key};
+}
+
+Slide 69
+
+say 'The first value in the string_key_and_value_hash is $string_key_and_value_hash{key1}';
+say "The first value in the string_key_and_value_hash is $string_key_and_value_hash{key1}"; # again, double quotes interpolate the variable
+
+Slide 70
+
+# keys can be numerical
+
+my %keys_are_numbers = (
+  1 => 'one', 2 => 'two', 3 => 'three', 
+);
+
+say $keys_are_numbers{2};
+
+# no major benefits over array, except that you don't automatically have a result if you never created the key,
+# and you don't have to start at zero, however, you will need to sort the keys as you read them
+
+
+Slide 71
+
+Story so far

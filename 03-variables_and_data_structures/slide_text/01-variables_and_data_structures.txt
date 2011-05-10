@@ -1,0 +1,14 @@
+Slide 3
+
+Keywords/Functions generally need something to act upon. Data.
+
+You can either have hard coded 'use once' data, or 'keep it around and manipulate' data.
+
+In this section we are going to look at 2 types of data, in a 'use once' fashion, that of numbers and words (strings),
+and then we'll look at 'keep it around and manipulate' or variables, and how we can structure that
+data within the program, so it can represent tables and sources of data.
+
+We will be using some different functions. Please ask if I don't briefly mention what they are trying
+to do, but we will look a bit more in depth about them later.
+
+First, Numbers;

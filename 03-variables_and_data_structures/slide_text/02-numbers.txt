@@ -1,0 +1,117 @@
+Slide 4
+
+In this, we are going to work through bin/01-integer.pl, looking at each statement, trying to describe what we are doing with the numbers.
+(Note, In order to see what we are doing, Perl needs to be told to print the output, so we will 'say' everything)
+
+say 1; # integers don't need quoting
+
+If you think back to the error we got when we tried to use the say function without having 'use Modern::Perl;', we got
+
+Unquoted string "say" may clash with future reserved word at bin/brave_new_world.pl line 5.
+
+numbers don't need quoting. (A couple of exceptions exist, but we won't go into them here)
+
+say 0;
+
+Hey, 0 is a number (well, it is technically a concept, but we won't go into deep maths here)
+
+Slide 5
+
+### Maths
+
+say 1+1; # addition
+
+say 2*7; # multiplication
+
+say 9-3; # subtraction
+
+say 9/3; # division
+
+The standard 4 mathematical operations are available to you here, with no need to do anything special. If you are new
+to programming at all, * represents multiplication and / division
+
+Slide 6
+
+say 3**2; # square
+
+say 4**4; # (4 to the power of 4)
+
+Slide 7
+
+### do something that affects strings ordinarily
+
+say 1 . 1; # this is a string function, so coerces the integers into strings, and then performs the function
+
+We have just joined (concatenated) the two parts together
+
+Slide 8
+
+### boolean numbers
+
+say 1 if 0; # this is boolean untrue
+ 
+This shouldn't have printed anything
+
+{ may just drop this completely 
+say 2 if '0 but true'; # because of the word value, it is considered true
+
+You may need to have a true 0. You can do this with '0 but true' It can still do number operations, but because
+it has a string value, it is considered to be true.
+
+say '0 but true' + 25; # because of 0, it is still able to do number functions
+
+none of my colleagues have ever used this or come across this - don't do it
+
+say 3 if '0'; # this is still false
+
+just quoting 0 doesn't make it true
+}
+
+say 4 if 4; # any number other than 0 is true
+
+Slide 9
+
+### floating points
+
+say 1.00; # truncates past the decimal point
+
+say '1.00'; # acts as a string
+
+say 1.01;
+
+Slide 10
+
+### producing sequences
+
+say 0..9; # generates a sequence of numbers
+
+The double dot operator doesn't concatenate twice, but instead allows a sequence of consecutive numbers
+to be produced quickly
+
+Slide 11
+
+### numerical testing
+
+say 4 if ( 1 == 1 ); # lhv and rhv are equal
+
+say 5 if ( 1 != 2 ); # lhv and rhv are not equal
+
+say 6 if ( 2 > 1 ); # lhv greater than rhv
+
+say 7 if ( 1 < 2 ); # rhv less than lhv
+
+= is an assignment operator in perl (and most languages) so we use == to check equivalence of numbers
+
+# also >= and =<
+
+Slide 12
+
+### comparisons
+
+say 10 <=> 11; # the comparison or 'spaceship' operator
+say 10 <=> 10;
+say 11 <=> 10;
+
+In order to determine if two things are equal, or which is greater, we have the comparison or 'spaceship'
+operator. 3 possible results are given, -1 if the right hand side is greater than left, 0 if the same or 1
+1 if the left hand side is greater. Useful if you want to sort a set of numbers.

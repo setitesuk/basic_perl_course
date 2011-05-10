@@ -1,0 +1,198 @@
+Slide 72
+
+## Data Structures
+
+Arrays and Hashes are fine for a single 'row' of data, but you will often have data in a 2d (or maybe 3+d) table
+
+For this we can utilise
+
+Slide 73
+
+## References
+
+A reference is a pointer to the location of data in memory
+
+We store it in a scalar and the obtain the data by dereferencing.
+
+Lets take a look
+
+Slide 74
+
+We'll start with a scalar, since we want to understand the memory location first
+
+bin/06-references.pl
+
+my $original_scalar = 'original';
+my $copy_of_original_scalar = $original_scalar;
+
+say $original_scalar . q{ } . \$original_scalar;
+say $copy_of_original_scalar . q{ } . \$copy_of_original_scalar;
+
+Both of these pieces of information use different memory locations, even though one is a copy
+
+\ is used to tell perl to give us the memory location of a variable
+
+Slide 75
+
+$copy_of_original_scalar = 'new';
+say $copy_of_original_scalar . q{ } . \$copy_of_original_scalar;
+
+If we change the copy, we can see that the memory location of that copy is the same
+
+Slide 76
+
+my $reference_to_original_scalar = \$original_scalar;
+
+say $reference_to_original_scalar . q{ } . \$original_scalar; # same reference to place in memory
+
+We can assign the reference to another variable, and the variable contains the reference
+
+Slide 77
+
+To get it back:
+
+say ${ $reference_to_original_scalar };
+
+By putting it into ${ } we tell perl to dereference the reference to a scalar
+
+Slide 78
+
+Now a bit of magic:
+
+$original_scalar = 'another string';
+
+say $original_scalar . q{ } . ${ $reference_to_original_scalar }; # we have changed the references ultimate value
+
+Slide 79
+
+${ $reference_to_original_scalar } = 'original again';
+
+say $original_scalar . q{ } . ${ $reference_to_original_scalar }; # we have changed the original value
+
+Slide 80
+
+# not huge amount of benefit with just scalars (some exceptions), but we can take references of any data structure
+ # war and peace - don't want double the memory used up
+
+Slide 81
+
+my @original_array = 1..200;
+my @copy_of_original_array = @original_array;
+
+say \@original_array;
+say \@copy_of_original_array;
+
+Here we are, doing the copy of an array again, and seeing the memory locations of the two copies
+
+Slide 82
+
+Lets take a reference of the original array
+
+my $array_ref = \@original_array;
+
+say $array_ref . q{ } . \@original_array;
+
+same reference to place in memory
+
+Slide 83
+
+We can do similar magic:
+
+splice @copy_of_original_array, 100,10;
+
+say scalar @copy_of_original_array;
+say scalar @original_array;
+say scalar @{ $array_ref };
+
+What's going to happen here? (splice is removing 10 elements, scalar returns the number of elements)
+
+Slide 84
+
+push @original_array, @original_array;
+say scalar @copy_of_original_array;
+say scalar @original_array;
+say scalar @{ $array_ref };
+
+How about here?
+(This is a way of doubling an array)
+
+Slide 85
+
+pop @{ $array_ref };
+say scalar @copy_of_original_array;
+say scalar @original_array;
+say scalar @{ $array_ref };
+
+And here? (pop removed the last element)
+
+Slide 86
+
+we have only been changing the array that is stored in memory
+
+You can do anything with an arrayref that you can with an array
+
+You just need to dereference with @{ }
+
+
+Slide 87
+
+my %original_hash = (
+  band => 'Queen',
+  'lead vocals' => 'Freddie Mercury',
+  'lead guitar' => 'Brian May',
+  'bass guitar' => 'John Deacon',
+  'drums' => 'Roger Taylor',
+);
+
+Here I have a hash, anyone want to suggest how I take a reference?
+
+Slide 88
+
+my %copy_of_original_hash = %original_hash;
+say \%original_hash;
+say \%copy_of_original_hash;
+
+my $hash_ref = \%original_hash;
+
+say $hash_ref . q{ } . \%original_hash;
+
+same reference to place in memory
+
+Slide 89
+
+Let's do a bit of manipulation
+
+$copy_of_original_hash{band} = 'Queen + Paul Rodgers';
+$copy_of_original_hash{'lead vocals'} = 'Paul Rodgers';
+delete $copy_of_original_hash{'bass guitar'};
+
+say %original_hash;
+say %copy_of_original_hash;
+
+Here we have modified the copy hash,
+
+Slide 90
+
+Let's modify the reference
+
+delete $hash_ref->{'lead vocals'}; # RIP Freddie
+say %original_hash;
+
+As with scalar and array, we have changed to original hash in memory
+
+Note the - > operator, this tells perl that the variable need dereferencing, before obtaining the value
+(we'll see more later with this)
+
+Slide 91
+
+# instantiate an anonymous array (scalar with a reference to an unamed array) like this
+
+my $anon_array_ref = [];
+say $anon_array_ref;
+
+# and instantiate an anonymous hash (scalar with a reference to an unamed hash) like this
+
+my $anon_hash_ref = {};
+say $anon_hash_ref;
+
+# these will be important for 07
