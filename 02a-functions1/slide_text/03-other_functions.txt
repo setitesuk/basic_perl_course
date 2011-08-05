@@ -1,0 +1,16 @@
+Other functions which are very common are
+
+  if
+  next
+  last
+  while
+  foreach
+  for
+  unless
+  until
+  open
+  close
+  push
+  shift
+
+We will look more at each of these in the context we would use them, and the specific syntax for each as necessary, but hopefully now you should understand the idea of functions.

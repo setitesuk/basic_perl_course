@@ -1,0 +1,26 @@
+Functions always act on the item(s) following the function name (note, there can be no items following it). Let's take a look at the simplest.
+
+  print 'Hello World!';
+  <function> <item> <end of statement>
+
+Our function is 'print' which tells perl to print to the current output the next item it is given.
+
+Our item is the 'string' (we'll look at what I mean by a string in the next section). This is a 'physical' entity. It isn't an instruction to the computer to do something, it just is.
+
+We have to tell perl that we have finished doing any processing on this, so it knows to compile and execute that code, but not have it affected by something else, so we end the statement with a ;
+
+; is used in a number of languages, and so was the natural choice to use in perl. It is an uncommonly used character, enough that it could be given it's own software meaning. A '.' (full stop) is used to mean something other than a sentence end, which we will see, so it couldn't be that.
+
+statements can consist of multiple functions and items such that we can generate statements such as
+
+  print 5 if ( 2 + 3 == 5);
+
+The important thing is to remember that when perl reads this, it will act in a right to left manner, producing an item for the next left function to use.
+
+  2 + 3 == 5 is evaluated, producing a 'true' entity.
+  if 'true entity' is evaluated, seeing that it is a 'true if entity'.
+  As we have a 'true if entity', perl takes the 5 and 'print's it.
+
+Multiple functions separated by an newline are treated as though they are part of the same statement.
+
+Multiple statements are separated with a ;

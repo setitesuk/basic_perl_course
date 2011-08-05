@@ -27,6 +27,10 @@ say ucfirst lc 'ANdrEw';  # result Andrew
 
 __END__
 
+say reverse 'TACTGATTACACATTACT' # reverse the string
+
+__END__
+
 say 'Hello' . 'World'; # concatenate
 
 __END__

@@ -1,0 +1,20 @@
+We have already used 2 functions when we ran our first programs:
+
+  print 'Hello World!';
+  say 'Hello World!';
+
+Functions do what they say, they do something to perform an action.
+
+Real world example of a function.
+
+  Dialling a telephone number.
+
+  dial '01234 123456';
+
+This causes the phone to send out a message, which will ring a phone with the number 01234 123456
+
+There are many functions inbuilt in perl (which are often called keywords). In our first programs, print and say are examples of these.
+
+Also we can get additional functions, either from downloaded libraries which we import into our code, or that we can write ourselves. We'll look at these later.
+
+Optionally, they sometimes also get called methods or subroutines, but there tends to be a context to that which we won't go into here. You can safely assume at the moment that should I mention keyword/function/method/subroutine, I am talking about one and the same thing.
