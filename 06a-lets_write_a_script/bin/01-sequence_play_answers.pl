@@ -46,38 +46,7 @@ foreach my $seq ( $sequence_1, $sequence_2, $sequence_3 ) {
   say ( ( ( $seq =~ tr/GCgc/GCgc/ ) * 100 ) /  length $seq );
 }
 
-
-# 5) create a hash data structure with codons as the keys, and the sequences
-# underneath them if they contain that. Bonus points if you can
-# refer to the sequence by name, rather than the base string, and you can
-# generate in the smallest amount of code possible
-
-# e.g. %codon_in_sequences = (
-#    atg => <data structure containing the sequence atg is present in>,
-#    taa => <data structure containing the sequence taa is present in>,
-#    ...
-#  );
-
-my %codon_in_sequences;
-
-my $count = 1;
-foreach my $seq ( $sequence_1, $sequence_2, $sequence_3 ) {
-  my $seq_name = 'sequence_' . $count;
-
-  foreach my $codon ( qw{atg taa tag tga} ) { # you could have an array of all the codons here
-    my ($match) = $seq =~ m/($codon)/im;
-    $match and $codon_in_sequences{$match}->{$seq_name} = $seq; # the use of 'and' means that we only create the key value pair if we matched
-#    if ( $seq =~ m/$codon/im ) {
-#      $codon_in_sequences{$codon}->{$seq_name} = $seq;
-#    }
-  }
-
-  $count++;
-}
-
-use Test::More; diag explain \%codon_in_sequences;
-
-# 6) Let the user enter a codon to exchange methionine for in sequence_1, and switch it
+# 5) Let the user enter a codon to exchange methionine for in sequence_1, and switch it
 # Bonus points for challenging a non-dna base letter
 
 print 'Enter a codon you would like to swap methionine (atg) for: ';
@@ -93,7 +62,7 @@ while ( $user_codon =~ m/[bd-fi-su-z]/im ) {
 $sequence_1 =~ s/atg/$user_codon/im;
 say $sequence_1;
 
-# 7) BONUS: assuming sequence is always read 5' to 3', can you print out the reverse complement
+# 6) BONUS: assuming sequence is always read 5' to 3', can you print out the reverse complement
 # in the order it is read of each sequence (hint, there is a reverse function, and
 # you will need an extra assignment step, or the word scalar in front of it)
 
