@@ -1,37 +1,6 @@
 ### From now on in, we are going to use Sequence manipulation as our project, and move through from a procedural script (which we have been doing), to a script using self-written functions (the next section), to taking those functions and making them reusable between scripts via modules, and then onto objects.
 
-
-### What is a function?
-
-We have been calling functions throughout our course so far
-
-print
-say
-die
-if
-chomp
-open
-close
-substr
-push
-shift
-...
-
-These are sometimes referred to as keywords as the are perl core functions. The do something to or with the parameters provided to them.
-
-Some are imported in when we 'use' something, such as our friend File::Slurp, which imports the functions read_file and write_file. In this case, we have imported in a function which behind the scenes does all the opening, printing and closing of filehandles for us.
-
-What benefits do we get from functions?
-
- - they do a job for us
- - save us writing code
- - enable us to reuse code, so smaller code base and less cutting and pasting.
-
-What is the difference between a function, a method and a subroutine (in Perl context)?
-
- - None
-
-Since we have been using functions already, we have seen syntax of how to use them. In this section, we are going to formalise that syntax, and write a function or two.
+We have now been using functions and data to do things, now lets try to be a bit cleverer and write a function ourselves.
 
 # syntax for using a function
 
