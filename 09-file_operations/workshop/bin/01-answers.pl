@@ -4,7 +4,7 @@ use Modern::Perl;
 
 ###
 
-# using the file 07-file_operations/data/1234_1_qseq.txt write a script
+# using the file 09-file_operations/data/1234_1_qseq.txt write a script
 # that will obtain the sequence and the quality scores, generate a unique
 # name for each read from other information, and then output out in the format
 
@@ -19,7 +19,7 @@ use Modern::Perl;
 use File::Slurp;
 
 # read in a file
-my @reads = read_file( '../07-file_operations/data/1234_1_qseq.txt' );
+my @reads = read_file( '../data/1234_1_qseq.txt' );
 
 # create an empty output array
 my @named_reads;
