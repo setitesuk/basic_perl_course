@@ -34,7 +34,9 @@ Please ask when you don't understand, and we'll go over it. There are 20 people 
 
 Slide 5
 
-Also, this is the first time I have run the course, and this has been written from scratch. We thought it would be good for you to learn concepts that are currently used (Modern Perl), rather than spending 3 days just looking at the basics. However, slow me down, and I'll make notes when I've not covered enough of what you need. Hopefully I have written a course with a good pace and a good mix of basic and modern perl. Let's see.
+Also, this is the 2nd time I have run the course. It has been changed due to comments from the first course, but some objectives have remained the same. We thought it would be good for you to learn concepts that are currently used (Modern Perl), rather than spending 3 days just looking at the basics. However, do slow me down, and I'll make notes when I've not covered enough of what you need.
+
+Hopefully I have written a course with a good pace and a good mix of basic and modern perl, with changes from last time. It's a continual learning process for all.
 
 Slide 6
 

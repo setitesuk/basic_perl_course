@@ -1,5 +1,5 @@
 Who Am I?
-SLide 14
+Slide 14
 So, Who Am I. I'm Andy Brown. I've been dabbling with perl since 2002, and have been programming full time since 2007.
 
 I started at The Sanger Institute back in 1999 as a Finisher, and whilst in the department, self taught and went on courses like this to learn perl. Coming back from those courses, I wrote web applications and command line scripts to help in the department, including helping to rewrite gapNav, and writing the comptags script.

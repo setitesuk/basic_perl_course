@@ -13,27 +13,34 @@ Sections:
 00-Introductions
 01-What is Perl?
 02-Running a Program
-03-Variables and Data Structures
-04-IO
-05-Regular Expressions
-06-Decision Making
-  06a - lets write a script workshop
-07-File Operations
-  07a - write the book of life workshop
-08-Functions
-  08a - write a function workshop
-09-Modules
-  09a - write a module workshop
-10-Objects
-  10a - write an object workshop
-11-Combining and when to use scripts/modules/objects
-12-Testing
-13-One-liners
+03-Functions 1
+04-Variables and Data Structures
+05-IO
+06-Regular Expressions
+07-Decision Making
+08-lets write a script workshop
+09-File Operations
+  - write the book of life workshop
+10-References and Extended Data Structures
+11-One-liners
+12-Functions 2
+  - write a function workshop
+13-Modules
+  - write a module workshop
+14-Objects
+  - write an object workshop
+15-Combining and when to use scripts/modules/objects
+16-Testing
+17-The End
+
 
 Slide 11
 
-You'll notice there aren't many workshops up front, and those that are could be scary (Objects seem to scare a lot of experienced programmers, let alone those new to it). The hope is that you will be building on the basics in the later workshops by using them, and that most workshops will build on previous ones. The thing to remember is that they are not about getting things right or wrong, but building the principles. There are my answers (not necessarily perfect) for each, with all the building blocks you need to attempt them. We will also go through each of them, so that you can understand where you may have got stuck.
+It doesn't look as though there are many workshops up front, but there will be some quick 'quiz' type exercises for you to do during them.
 
+Also, there is a lot here - too much in fact. I fully expect we will not reach Modules/Objects/Testing in the normal scheme of things. This is the 2nd time that the course has been run, and we didn't manage them except for a few high flyers on Friday afternoon, in short.
+
+So, please don't feel that this looks like the course is going too far if you are a newbie. It has been rearranged to hopefully better lead you on to more complex ideas, but it is more important that you can do something with Perl at the end, than you know the more modern ways of producing code. (There may be a plan to do a more advanced course next year).
 
 Please ask as many questions as you need - during presenting or workshop sessions, but please make them relevant to learning perl, not how it might relate to other languages. If you know Java or Ruby, that is fantastic, and I'd probably question what you might get out of this course, but remember that others don't. The same also goes for systems. I am not here to answer your questions about the systems perl runs on. This might sound draconian, but I want everyone to hopefully come out of this class at the level of perl programmer, and you might hold up others by questioning like this.
 
@@ -45,4 +52,6 @@ Are there any problems with 9.30am -> 5pm?
 
 Slide 13
 
-I say rules but as a request and favour to me and your colleagues, please don't keep checking emails/websites or try and do work whilst here, and I would ask you not to go back to the office at lunch. This will distract you from learning, and if you aren't on the back row, will probably distract those behind you. I said I will encourage you to run the scripts as I present, but you should just be typing against the shell. If you must do some work, I'd much rather you informed me that you need to leave the session, and go back to your office. I can't promise that I'll have time to bring you back up to speed, but you will be doing all your colleagues a favour.
+I say rules but as a request and favour to me and your colleagues, please don't keep checking emails/websites or try and do work whilst here, and I would ask you not to go back to the office at lunch. This will distract you from learning, and if you aren't on the back row, will probably distract those behind you.
+
+I encourage you to run the scripts as I present (or you can type in from the slides if you prefer), but you should just be typing against the shell. If you must do some work, I'd much rather you informed me that you need to leave the session, and go back to your office. I can't promise that I'll have time to bring you back up to speed, but you will be doing all your colleagues a favour.
