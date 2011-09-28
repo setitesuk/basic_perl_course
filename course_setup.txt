@@ -3,7 +3,7 @@ How the course perl is to be set up
 perl 5.12.3
 
 cpanp
-
+s conf prereqs 1; s save
 i Task::Moose ( yes to all additional modules to install )
 i File::Slurp
 i http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/List-AllUtils-0.02.tar.gz
