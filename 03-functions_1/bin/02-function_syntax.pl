@@ -1,4 +1,4 @@
-#!/Users/ajb/dev/bin/perl -w
+#!/software/perl -w
 
 use Modern::Perl;
 
